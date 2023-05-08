@@ -37,9 +37,7 @@ export async function getServerSideProps(){
   });
 
   const posts = response?.data?.posts?.nodes
-
-  console.log("ERR AT TOP");
-  console.log(posts);
+ 
   return {
     props: {
       posts

@@ -5,7 +5,7 @@ import formatDate from "../lib/timestamp";
 export default function PostCard ({ post ,color}){
  
     return (
-<Link href={`/posts/${post.uri}`}>
+<Link href={`/posts${post.uri}`}>
 
 <div className="box post-card p-0">
   <figure className={!post.featuredImage ? "hide" : "post-thumbnail"}>
@@ -31,7 +31,7 @@ export default function PostCard ({ post ,color}){
     {
       post?.categories?.nodes.map(cat => {
        return (
-        <Link href={`/categories${cat.uri}`}  >
+        <Link href={`${cat.uri}`}  >
           <a className="tag is-link">{cat.name}</a>
         </Link>
        )
@@ -44,7 +44,7 @@ export default function PostCard ({ post ,color}){
     {
       post?.tags?.nodes.map(tag => {
        return (
-        <Link href={`/tags${tag.uri}`}>
+        <Link href={`${tag.uri}`}>
       <a className="tag is-primary">{tag.name}</a>
     </Link>
        )

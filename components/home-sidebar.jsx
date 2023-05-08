@@ -7,7 +7,7 @@ const HomeSidebar = ({categories}) => {
     const router = useRouter();
     const [searchQuery, setSearchQuery] = useState('');
   
-   
+   console.log(categories);
     const searchPost = (e) => {
       e.preventDefault()
       // router.push(`/posts?search=${searchQuery}`);
@@ -47,7 +47,7 @@ const HomeSidebar = ({categories}) => {
         categories.length > 1 ? categories.map(cat => {
           return(
             <li className="border-butt">
-              <Link href={`/categories${cat.uri}`} className='txt-white'>{cat.name}</Link>
+              <Link href={`${cat.uri}`} className='txt-white'>{cat.name}</Link>
             </li>
           )
         }) 

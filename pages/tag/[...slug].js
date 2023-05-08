@@ -11,8 +11,11 @@ export default function CategoryPage( {posts}) {
   return (
 
  <article className="is-flex flex-column gap-2">
+<div className="is-flex align-start gap-3">
 <h3 className="is-title txt-white is-size-4">Result for tags : {
   tagName[tagName.length - 1]}</h3>
+<h3 className="is-title txt-white is-size-4">{posts.length} RESULT</h3>
+</div>
   {
   posts.map((post) => {
       return (
@@ -27,7 +30,7 @@ export default function CategoryPage( {posts}) {
 
 export async function getServerSideProps(context) {
   const { slug } = context.query;
-  const slugs = slug[2]
+  const slugs = slug.join("")
   const response = await client.query({
     query: GET_POSTS_BY_TAG_SLUG,
     variables: {
