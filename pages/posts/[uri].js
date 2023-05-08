@@ -1,11 +1,12 @@
 import Head from 'next/head'
-import { gql } from '@apollo/client';
 import { client } from '../../lib/apollo';
 import Footer from '../../components/Footer';
-
-
+import { GET_POST_BY_URI } from '../../source/get-post-by-uri';
+import Image from 'next/image';
+import { CommentAuthor } from '../../components/comment-author';
+ 
 export default function SlugPage({ post }) {
-console.log(post);
+ 
   return (
     <div>
       <Head>
@@ -14,7 +15,7 @@ console.log(post);
       </Head>
 
  
-       <div className='is-flex flex-column gap-2'>
+<section className='is-flex flex-column gap-2' id='single-post'>
  
  {
   !post.featuredImage ?  <div className="is-flex flex-column  ">
@@ -46,6 +47,38 @@ console.log(post);
  }
           <article className='lh-base' dangerouslySetInnerHTML={{__html: post.content}}>   
           </article>
+ </section>
+
+ <div className=''>
+  <hr className='divider' />
+  <div className='is-flex flex-column gap-2'>
+    <h3 className={post.comments?.nodes?.length < 1 ? "hide" : 'is-title txt-white'}>{post.comments?.nodes?.length} COMMENT</h3>
+
+<CommentAuthor />
+{/* {
+  post.comments?.nodes?.map(com => {
+    return(
+      <div className=''>
+       <h3 className='txt-white'>{com.author?.node?.name}</h3>
+       <img src={com.author?.node?.avatar.url} />
+      </div>
+    )
+  })
+} */}
+<form className='is-flex flex-column gap-1' data-post_id={post.id}  >
+<h3 class="label txt-white is-title">Leave a Reply</h3>
+
+ 
+<div class="field">
+  <label class="label txt-white is-title">Message</label>
+  <div class="control">
+    <textarea class="textarea no-bg is-primary txt-white" placeholder="Comments"        ></textarea>
+  </div>
+</div>
+
+<button className='button is-medium is-link navbar-end'>LEAVE COMMENT</button>
+    </form>
+  </div> 
  </div>
       <Footer></Footer>
 
@@ -55,28 +88,7 @@ console.log(post);
 
 
 export async function getStaticProps({ params }){
-  const GET_POST_BY_URI = gql`
-  query getPostByURI($id:ID!) {
-    post(id: $id, idType: URI) {
-      title
-      uri
-      date
-      content
-      author {
-        node {
-          firstName
-          lastName
-          name
-        }
-      }
-      featuredImage {
-        node {
-          sourceUrl
-        }
-      }
-    }
-  }
-  `
+ 
   const response = await client.query({
     query:GET_POST_BY_URI,
     variables:{

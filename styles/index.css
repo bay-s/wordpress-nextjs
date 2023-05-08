@@ -133,7 +133,9 @@ textarea {
  .input::placeholder { /* Most modern browsers support this now. */
   color: white !important;
 }
-
+.textarea::placeholder { /* Most modern browsers support this now. */
+  color: white !important;
+}
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color: white !important;
 }
@@ -250,6 +252,21 @@ position: relative;
 .post-thumbnail{
   height: 250px !important;
 }
+
+.single-post-image{
+  height: 350px !important;
+}
+
+.single-post-image span{
+  width: 100% !important;
+  height: 100% !important; 
+}
+.single-post-image img{
+width: 100% !important;
+height: 100% !important;
+object-fit: cover;
+}
+
 
 .post-thumbnail span{
     width: 100% !important;

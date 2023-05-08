@@ -5,18 +5,27 @@ import { SEARCH_POSTS } from "../source/get-search-post";
 
 
 
-const  SearchPage = ({searchResult}) => {
+const  SearchPage = ({searchResult,query}) => {
  
     console.log(searchResult);
     return(
+<section className="is-flex flex-column gap-1">
+<div className="is-flex align-center gap-3">
+<h3 className="txt-white">Result for : <span className="is-title">{query}</span></h3>
 
-            searchResult.map((post) => {
+<h4 className="txt-white">{ searchResult.length} : <span className="is-title">Result</span></h4>
+</div>
+  {
+    
+    searchResult.map((post) => {
        
-              return (
-                <PostCard key={post.node.id} post={post.node}></PostCard>
-              )
-            })
-          
+       return (
+         <PostCard key={post.node.id} post={post.node}></PostCard>
+       )
+     })
+   
+  }
+</section>
 
     )
   }
@@ -36,7 +45,8 @@ const  SearchPage = ({searchResult}) => {
   console.log(searchResult);
     return {
       props: {
-        searchResult
+        searchResult,
+        query:q
       }
     };
   }

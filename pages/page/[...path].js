@@ -1,8 +1,9 @@
-import { gql } from "@apollo/client";
 import Head from "next/head";
 import Footer from "../../components/Footer";
 import { client } from "../../lib/apollo";
-
+import Image from 'next/image';
+import { GET_PAGES_BY_URI } from "../../source/get-pages-by-uri";
+ 
 
 const SinglePage = ({pages}) => {
  
@@ -14,14 +15,25 @@ const SinglePage = ({pages}) => {
         </Head>
   
  
-        <main>
+<section id="single-post">
             <div className="siteHeader">
-             <img src={pages.featuredImage.node.mediaItemUrl} />
+ 
+<figure className={!pages.featuredImage  ? "hide" : "single-post-image"}>
+ {pages.featuredImage?.node?.mediaItemUrl && (
+  <Image
+    loader={() => pages.featuredImage?.node?.mediaItemUrl}
+    src={pages.featuredImage?.node?.mediaItemUrl}
+    width={400}
+    height={250}
+    alt="Image description"  objectFit="cover"
+  />
+)}
+</figure>
               <p>✍️  &nbsp;&nbsp;{`${pages.author.node.name}`} || 🗓️ &nbsp;&nbsp;{ new Date(pages.date).toLocaleDateString() }</p>
             </div>
               <article dangerouslySetInnerHTML={{__html: pages.content}}>   
               </article>
-        </main>
+        </section>
   
         <Footer></Footer>
       </div>
@@ -33,27 +45,7 @@ export default SinglePage
 export async function getStaticProps({ params }){
     const path = params.path.join("/")
     console.log(path);
-    const GET_PAGES_BY_URI = gql`
-    query GetPageByPath($path: String!) {
-        pageBy(uri: $path) {
-            id
-            title
-            content
-            uri
-            featuredImage {
-              node {
-                mediaItemUrl
-              }
-            }
-            date
-            author {
-              node {
-                name
-              }
-            }
-          }
-        }
-    `
+ 
     const response = await client.query({
       query:GET_PAGES_BY_URI,
       variables: { path }

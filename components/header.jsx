@@ -17,7 +17,7 @@ export default function Header({menus ,title}) {
     </a>
   </div>
 
-  <div id="navbarBasicExample" class="navbar-menu is-active">
+  <div id="navbarBasicExample" class="navbar-menu  ">
     <div class="navbar-start">
  
 {
