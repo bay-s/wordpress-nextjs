@@ -3,13 +3,17 @@ import { client } from "../../lib/apollo";
 import { GET_POSTS_BY_CATEGORY_SLUG } from "../../source/get-post-by-categories";
 import PostCard from "../../components/PostCard";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 export default function TagsPage( {posts}) {
   const route = useRouter()
   const categoryName = route.asPath.split("/")
  console.log(posts);
   return (
-
+<>
+<Head>
+ <title>Category || {categoryName[categoryName.length - 1]}</title>
+</Head>
  <article className="is-flex flex-column gap-2">
 <div className="is-flex align-start gap-3">
 <h3 className="is-title txt-white is-size-4">Result for category : {categoryName[categoryName.length - 1]}</h3>
@@ -24,7 +28,7 @@ export default function TagsPage( {posts}) {
     })
 }
  </article>
-
+</>
   )
 }
 

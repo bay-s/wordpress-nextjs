@@ -1,0 +1,32 @@
+ 
+import Footer from "./Footer";
+import HomeSidebar from "./home-sidebar";
+
+
+function Layout(props) {
+ console.log(props);
+  return (
+<>
+<main className="my-5  is-flex flex-column" id="main-container">
+
+<div className='container' id="containers">
+      <section className="columns">
+       <div className='column is-3 py-0'>
+     <HomeSidebar categories={props.categories}/>
+       </div>
+        <div className='column is-flex flex-column  '>
+          {props.children}
+          </div>
+    </section>
+</div>
+
+</main>
+   <Footer footerInfo={props.footerInfo}/>
+   </>
+  );
+}
+
+ 
+export default Layout;
+
+ 

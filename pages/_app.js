@@ -3,25 +3,42 @@ import '../styles/bulma.min.css'
 import '../styles/custom.css'
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 import { ApolloProvider, gql } from '@apollo/client'
-import Layout from '../components/layout'
 import { client } from '../lib/apollo'
 import { GET_MENUS } from '../source/get-menu'
 import { GET_CATEGORIES } from '../source/get-categories';
-import Header from '../components/header';
- 
-function MyApp({ Component, pageProps,menus,title,categories}) {
- 
-console.log(categories);
-console.log(title);
-console.log(menus);
+import { GET_TITLE } from '../source/get-title';
+import Head from 'next/head';
+import { GET_FOOTER } from '../source/get-footer-info';
+import BlogLaoyout from '../components/blog-layout';
+import {  StateProvider } from './state-context';
+import MainLayout from '../components/layout';
+import { useRouter } from 'next/router';
+import { GET_HERO } from '../source/get-hero';
+
+function MyApp({ Component, pageProps,siteProps}) {
+  const {pathname} = useRouter()
+ const value = {
+  menus:siteProps.menus,
+  siteInfo:siteProps.siteInfo,
+  categories:siteProps.categories,
+  footerInfo:siteProps.footerInfo,
+  hero:siteProps.hero
+ }
+ const Layout = pathname === '/' ? MainLayout : BlogLaoyout;
+console.log(pathname);
   return (
- <Layout categories={categories}>
- <Header menus={menus} title={title}  />
-  <ApolloProvider client={client}>
+<StateProvider value={value}>
+
+<Layout categories={siteProps.categories} footerInfo={siteProps.footerInfo}>
+<Head>
+  <link rel="icon" href={siteProps.siteInfo?.favicon}></link>
+</Head>
+ <ApolloProvider client={client}>
           <Component {...pageProps} />
-   </ApolloProvider>
+</ApolloProvider>
  </Layout>
- 
+
+ </StateProvider>
     )
 }
 
@@ -35,25 +52,35 @@ MyApp.getInitialProps = async (ctx) => {
     query: GET_MENUS,
   });
  
-  const GET_TITLE = gql`
-  query GetSiteMetadata {
-         generalSettings {
-           title
-         }
-       }
-  `
+ 
   const responseTitle = await client.query({
     query: GET_TITLE,
   });
  
+  const responseFooter = await client.query({
+    query: GET_FOOTER,
+  });
+
+  const responseHero = await client.query({
+    query: GET_HERO,
+  });
+
+
+  const hero = responseHero?.data?.heroSections?.nodes
   const menus = response?.data?.menuItems?.edges;
-  const title = responseTitle.data?.generalSettings?.title
+  const siteInfo = responseTitle.data?.getHeader
   const categories = responseCat?.data?.categories?.nodes
-  
-  return {
+  const footerInfo = responseFooter?.data?.getFooter
+ 
+  const siteProps = {
     menus,
-    title,
-    categories
+    siteInfo,
+    categories,
+    footerInfo,
+    hero
+  }
+  return {
+    siteProps
   };
 };
 

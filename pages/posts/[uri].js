@@ -1,20 +1,17 @@
 import Head from 'next/head'
 import { client } from '../../lib/apollo';
-import Footer from '../../components/Footer';
 import { GET_POST_BY_URI } from '../../source/get-post-by-uri';
-import Image from 'next/image';
 import { CommentAuthor } from '../../components/comment-author';
- 
-export default function SlugPage({ post }) {
- 
-  return (
-    <div>
-      <Head>
-        <title>Headless WP Next Starter</title>
-        <link rel="icon" href="favicon.ico"></link>
-      </Head>
 
- 
+export default function SlugPage({ post }) {
+    
+  return (
+    <>
+<Head>
+ <title>Posts || {post.title}</title>
+</Head>
+
+
 <section className='is-flex flex-column gap-2' id='single-post'>
  
  {
@@ -80,9 +77,8 @@ export default function SlugPage({ post }) {
     </form>
   </div> 
  </div>
-      <Footer></Footer>
-
-    </div>
+ 
+    </>
   )
 }
 

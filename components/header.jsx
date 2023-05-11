@@ -1,13 +1,17 @@
 import Link from "next/link";
+import { AuthContext } from "../pages/state-context";
+import { useContext } from "react";
 
-export default function Header({menus ,title}) {
-
+export default function Header( ) {
+  const { menus, siteInfo, categories, footerInfo } = useContext(AuthContext);
+ 
     return(
 <header className="header">
- <nav class="has-background-black-bis align-center navbar is-fixed-top py-3 px-5" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item is-bold" href="/">
-     {title}
+
+ <nav class="footer-dark justify-between  align-center navbar is-fixed-top py-3 px-5" role="navigation" aria-label="main navigation">
+ <div class="navbar-brand">
+    <a class="navbar-item is-bold is-title" href="/">
+     {siteInfo?.siteTitle}
     </a>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -17,7 +21,7 @@ export default function Header({menus ,title}) {
     </a>
   </div>
 
-  <div id="navbarBasicExample" class="navbar-menu  ">
+  <div id="navbarBasicExample" class="navbar-menu ">
     <div class="navbar-start">
  
 {
@@ -45,15 +49,17 @@ export default function Header({menus ,title}) {
   })
  
 }
-
- 
+<a class="navbar-item " href="/blog">
+  Blog
+</a>
     </div>
 
- 
-
   </div>
-</nav>
-        </header>
+  {/* END NAVBAR MENU */}
+  
+ </nav>
+
+</header>
     )
 }
  

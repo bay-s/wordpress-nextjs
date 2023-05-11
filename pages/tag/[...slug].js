@@ -3,13 +3,18 @@ import { client } from "../../lib/apollo";
 import PostCard from "../../components/PostCard";
 import { useRouter } from "next/router";
 import { GET_POSTS_BY_TAG_SLUG } from "../../source/get-post-by-tags";
+import Head from "next/head";
 
 export default function CategoryPage( {posts}) {
   const route = useRouter()
   const tagName = route.asPath.split("/")
  console.log(posts);
   return (
-
+<>
+<Head>
+ <title>Tag || {
+  tagName[tagName.length - 1]}</title>
+</Head>
  <article className="is-flex flex-column gap-2">
 <div className="is-flex align-start gap-3">
 <h3 className="is-title txt-white is-size-4">Result for tags : {
@@ -25,6 +30,7 @@ export default function CategoryPage( {posts}) {
 }
  </article>
 
+</>
   )
 }
 

@@ -1,39 +1,40 @@
 import Head from "next/head";
 import { client } from "../../lib/apollo";
 import Image from 'next/image';
-import { GET_PAGES_BY_URI } from "../../source/get-pages-by-uri";
+import {  GET_PORTFOLIO_BY_URI } from "../../source/get-portofolio-by-uri";
  
  
 const SinglePage = ({pages}) => {
- 
+ console.log(pages);
     return(
 <>
 <Head>
  <title>Pages || {pages?.title}</title>
 </Head>
 
-<section className="is-flex flex-column gap-3" id="single-post">
+<section id="single-post">
 
-<div className="siteHeader">
-<figure className={!pages.featuredImage  ? "hide" : "single-post-image"}>
- {pages.featuredImage?.node?.mediaItemUrl && (
+<div className="card-image">
+<figure className={!pages?.featuredImage  ? "hide" : "single-post-image"}>
+ {pages.featuredImage?.node?.sourceUrl && (
   <Image
-    loader={() => pages.featuredImage?.node?.mediaItemUrl}
-    src={pages.featuredImage?.node?.mediaItemUrl}
+    loader={() => pages.featuredImage?.node?.sourceUrl}
+    src={pages.featuredImage?.node?.sourceUrl}
     width={400}
     height={250}
     alt="Image description"  objectFit="cover"
   />
 )}
 </figure>
-</div>
-              <article dangerouslySetInnerHTML={{__html: pages.content}}>   
+
+              <p>✍️  &nbsp;&nbsp;{`${pages?.author?.node?.name}`} || 🗓️ &nbsp;&nbsp;{ new Date(pages?.date).toLocaleDateString() }</p>
+            </div>
+              <article dangerouslySetInnerHTML={{__html: pages?.content}}>   
               </article>
 
  
 </section>
   
- 
 </>
     )
 }
@@ -45,11 +46,11 @@ export async function getStaticProps({ params }){
     console.log(path);
  
     const response = await client.query({
-      query:GET_PAGES_BY_URI,
+      query:GET_PORTFOLIO_BY_URI,
       variables: { path }
     })
     
-    const pages = response?.data?.pageBy
+    const pages = response?.data?.portofolioBy
     console.log(pages);
     return {
       props: {

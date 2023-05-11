@@ -2,6 +2,7 @@ import Link from "next/link"
 import Image from 'next/image';
 import formatDate from "../lib/timestamp";
 
+
 export default function PostCard ({ post ,color}){
  
     return (
@@ -54,9 +55,10 @@ export default function PostCard ({ post ,color}){
     {/* END TAGS */}
   </div>
  
-   <article className='lh-base' dangerouslySetInnerHTML={{__html:post.excerpt}}>   
+  <article className='lh-base' dangerouslySetInnerHTML={{__html:post.excerpt}}>   
    </article>
    
+ 
     </div>
     </div>
 </Link>
