@@ -159,6 +159,55 @@ textarea {
     color:   black !important;
 }
 
+/* CUSTOM BUTTON */
+
+.custom-btn{
+    background: transparent;
+    border: 1px solid #08e0d2;
+    border: 1px solid #08e0d2;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: .85em;
+    color:  #08e0d2;
+    justify-content: center;
+    padding-bottom: calc(0.5em - 1px);
+    padding: 1em 4em;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.fade{
+  animation: fadeIn 500ms  !important;
+  -webkit-animation: fadeIn 1s !important;
+  -moz-animation: fadeIn 1s  !important;
+  -o-animation: fadeIn 1s  !important;
+  -ms-animation: fadeIn 1s   !important;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-moz-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-o-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-ms-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
 
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Didact+Gothic&family=Frank+Ruhl+Libre:wght@600&family=Ibarra+Real+Nova:ital@1&family=Noto+Sans:wght@500&family=Outfit:wght@300&family=Pacifico&family=Poppins:wght@200&family=Square+Peg&family=Tangerine&family=Zen+Dots&display=swap");
 
@@ -191,10 +240,78 @@ color: black !important;
   color: red !important;
 }
 
- 
+.navbar-menu.is-active{
+  background-color: #050f1c !important;
+}
 /* end header */
 
 
+/* BANNER */
+ 
+.banner-single-post{
+  height: 350px ;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  }
+   
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .banner-content {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #fff;
+    width: 100%;
+    display: flex ;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+.banner-hero{
+  /* height: 400px;
+  display: flex;
+  flex-direction: column;
+  color: white; */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.banner-hero .banner-hero-body{
+padding: 80px;
+text-align: center;
+}
+
+.banner-title{
+  font-size:90px ;
+  font-weight: bold;
+}
+
+.banner-text{
+  font-size: 28px ;
+}
+
+.banner-text p {
+  line-height:  1.7rem !important;
+}
+
+  /* END BANNER */
 /* MAIN */
  
 .home-sidebar{
@@ -240,39 +357,26 @@ gap: 30px;
 
 
  /* post thumbnail */
-.banner-single-post{
-height: 350px ;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-position: relative;
-}
  
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.banner-content {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  color: #fff;
-  width: 100%;
-  display: flex ;
-  flex-direction: column;
-  align-items: center;
-}
-
  
 .post-thumbnail{
   height: 250px !important;
+}
+
+.post-thumbnail span{
+    width: 100% !important;
+    height: 100% !important; 
+}
+.post-thumbnail img{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position:top !important;
+ 
+}
+ /* end post thumbnail */
+.post-container{
+  word-wrap: break-word !important;
 }
 
 .single-post-image{
@@ -295,64 +399,18 @@ object-position: top center !important;
   border-radius: 8px;
 }
 
-.post-thumbnail span{
-    width: 100% !important;
-    height: 100% !important; 
-}
-.post-thumbnail img{
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  object-position:top !important;
- 
-}
-
-.post-container{
-  word-wrap: break-word !important;
-}
-
 .is-hover-link:hover{
   text-decoration: underline !important;
 }
-
-.banner-hero{
-  /* height: 400px;
-  display: flex;
-  flex-direction: column;
-  color: white; */
-  display: flex;
-  flex-direction: column;
-  height: 90vh;
-  border-radius: 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.banner-hero .banner-hero-body{
-padding: 80px;
-text-align: center;
-}
-
-.banner-title{
-  font-size:55px ;
-  font-weight: bold;
-}
-
-.banner-text{
-  font-size: 28px ;
-}
-
-.banner-text p {
-  line-height:  1.7rem !important;
-}
-
-#single-post h2{
+ 
+#single-post h2 , h3 ,h1 ,h4{
   font-family:'Zen Dots', cursive !important;
   color: white;
   font-weight: bold;
   font-size: 30px;
 }
  
+
 #single-post strong{
   color: white;
   font-weight: bold;
@@ -380,7 +438,36 @@ gap: 25px;
   color: white;
   font-weight: bold;
 }
- /* end post thumbnail */
+
+.wp-block-columns{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 25px 0;
+}
+
+.wp-block-columns .wp-block-button__link{
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: calc(0.5em - 1px);
+  text-align: center;
+  white-space: nowrap;
+  background-color: #485fc7;
+  border-color: transparent;
+  color: #fff;
+}
+
+.wp-block-columns ul li a{
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px;
+}
+
+.wp-block-columns ul li svg{
+  color: white;
+}
+/* END SINGLE POST */
 
  /* SIDEBAR */
 #categories .menu-list a{
@@ -392,7 +479,6 @@ gap: 25px;
   background-color:rgba(255, 255, 255, 0.082) !important;
 }
 
-#single-post
  /* END SIDEBAR */
 
  
@@ -407,6 +493,8 @@ gap: 25px;
   background-color: #050f1c !important;
  
 }
+
+
 
 
 /* 

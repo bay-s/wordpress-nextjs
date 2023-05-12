@@ -2,10 +2,23 @@ import Link from "next/link"
 import Image from 'next/image';
 import formatDate from "../lib/timestamp";
 import { useRouter } from "next/router";
-
+import { useEffect, useState } from "react";
+import LoadingCard from "./animation-loading";
+ 
 export default function PortoCard ({ portofolio }){
   const router = useRouter();
- 
+  const titles = "Project".split("")
+  const [isLoading,setIsLoading] = useState(true)
+
+  useEffect(() => {
+   if(portofolio){
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+      }, 1000);
+      return () => clearTimeout(timer);
+   }
+  },[])
+
   const handleClick = (e) => {
     e.preventDefault();
  
@@ -13,14 +26,34 @@ export default function PortoCard ({ portofolio }){
   };
 
     return (
-<article className="columns is-multiline">
+ 
+<div className='is-flex flex-column gap-4  my-6' >
+ <ul className='is-flex flex-column gap-1 align-center border-butt pb-4'>
+  <li>
+  <h3 className='title is-2 is-title has-text-primary'>
+  {
+        titles.map(title => {
+            return(
+                <span className='hvr-wobble-vertical'>{title}</span>
+            )
+        })
+    }
+  </h3>
+  </li>
+  <li>
+  <h4 className='subtitle is-3 is-title txt-white'>  A small gallery of my recent projects.</h4>
+  </li>
+ </ul>
+  {/* START CARD */}
+  <article className="columns is-multiline">
  
  {
-    portofolio.map(porto => {
+ portofolio.map(porto => {
         return (
 <div className="column is-3">
-
-<div className="box  p-0 post-card">
+{  isLoading ? <LoadingCard /> :  
+<div className="box  p-0 post-card" data-aos="fade-up"
+     data-aos-duration="1500">
 
   <div class="card-image">
 <figure className={!porto.featuredImage ? "hide" : "post-thumbnail"}>
@@ -43,11 +76,15 @@ export default function PortoCard ({ portofolio }){
       <p className="is-title has-text-grey-lighter">{porto?.author?.node?.name} - {formatDate(porto?.date)}</p>
     </div>
     </div>
- 
+  }
             </div>
         )
     })
  }
+ 
 </article>
+
+  {/* END CARD */}
+</div>
     )
 }

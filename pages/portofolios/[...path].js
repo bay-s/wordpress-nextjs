@@ -12,7 +12,7 @@ const SinglePage = ({pages}) => {
  <title>Pages || {pages?.title}</title>
 </Head>
 
-<section id="single-post">
+<section className="is-flex flex-column gap-2" id="single-post">
 
 <div className="card-image">
 <figure className={!pages?.featuredImage  ? "hide" : "single-post-image"}>
@@ -27,10 +27,10 @@ const SinglePage = ({pages}) => {
 )}
 </figure>
 
-              <p>✍️  &nbsp;&nbsp;{`${pages?.author?.node?.name}`} || 🗓️ &nbsp;&nbsp;{ new Date(pages?.date).toLocaleDateString() }</p>
-            </div>
-              <article dangerouslySetInnerHTML={{__html: pages?.content}}>   
-              </article>
+</div>
+
+<article dangerouslySetInnerHTML={{__html: pages?.content}}>   
+</article>
 
  
 </section>

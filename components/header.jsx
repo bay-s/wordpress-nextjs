@@ -1,10 +1,15 @@
 import Link from "next/link";
 import { AuthContext } from "../pages/state-context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 export default function Header( ) {
   const { menus, siteInfo, categories, footerInfo } = useContext(AuthContext);
- 
+ const [isOpen,setIsOpen] = useState(false)
+
+ const openDropdown = (e) => {
+  e.preventDefault()
+  setIsOpen(!isOpen)
+ }
     return(
 <header className="header">
 
@@ -14,14 +19,14 @@ export default function Header( ) {
      {siteInfo?.siteTitle}
     </a>
 
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={openDropdown}>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
 
-  <div id="navbarBasicExample" class="navbar-menu ">
+  <div id="navbarBasicExample" class={isOpen ? "navbar-menu fade is-active" : "navbar-menu fade"}>
     <div class="navbar-start">
  
 {

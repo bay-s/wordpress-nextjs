@@ -1,7 +1,9 @@
 import '../styles/index.css'
 import '../styles/bulma.min.css'
 import '../styles/custom.css'
+import '../styles/loading.css'
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+import 'aos/dist/aos.css';
 import { ApolloProvider, gql } from '@apollo/client'
 import { client } from '../lib/apollo'
 import { GET_MENUS } from '../source/get-menu'
@@ -14,9 +16,18 @@ import {  StateProvider } from './state-context';
 import MainLayout from '../components/layout';
 import { useRouter } from 'next/router';
 import { GET_HERO } from '../source/get-hero';
+import { useEffect } from "react";
+import AOS from 'aos';
 
 function MyApp({ Component, pageProps,siteProps}) {
   const {pathname} = useRouter()
+
+ 
+useEffect(() => {
+  AOS.init()
+ 
+  },[])
+  
  const value = {
   menus:siteProps.menus,
   siteInfo:siteProps.siteInfo,
