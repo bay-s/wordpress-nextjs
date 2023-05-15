@@ -40,7 +40,7 @@ const HomeSidebar = ({categories}) => {
 
    <div className='is-flex flex-column gap-2 p-3' id="categories">
      <h3 className='is-title txt-white is-bold is-size-5'>
-      Category
+      Posts Category
      </h3>
      <ul className='is-flex flex-column gap-1 menu-list'>
        {

@@ -14,7 +14,6 @@ export default function Home({siteInfo,portofolio, about}) {
  <title>{siteInfo?.siteTagLine}</title>
  </Head>
  {/* <BannerPage hero={hero}/> */}
-
 <AboutCard about={about} />
 <PortoCard portofolio={portofolio} />
 

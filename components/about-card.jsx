@@ -15,7 +15,7 @@ export const AboutCard = ({about}) => {
   </h3>
   <div className='columns is-multiline align-center gap-2'>
    <article className='column ' data-aos="fade-right"
-     data-aos-duration="1000"
+     data-aos-duration="800"
      data-aos-easing="ease-in-sine">
    <figure className={!about?.featuredImage  ? "hide" : "single-post-image"}>
  {about.featuredImage?.node?.sourceUrl && (

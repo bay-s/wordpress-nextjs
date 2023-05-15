@@ -2,6 +2,7 @@ import Head from "next/head";
 import { client } from "../../lib/apollo";
 import Image from 'next/image';
 import {  GET_PORTFOLIO_BY_URI } from "../../source/get-portofolio-by-uri";
+import Link from "next/link";
  
  
 const SinglePage = ({pages}) => {
@@ -11,6 +12,14 @@ const SinglePage = ({pages}) => {
 <Head>
  <title>Pages || {pages?.title}</title>
 </Head>
+
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="/" className='txt-white is-title'>Home</a></li>
+    <li><Link href='/portofolio'><a className='txt-white is-title'>Portofolio</a></Link></li>
+    <li class="is-active"><a href="#" className='has-text-grey-light is-title' aria-current="page">{pages?.title}</a></li>
+  </ul>
+</nav>
 
 <section className="is-flex flex-column gap-2" id="single-post">
 

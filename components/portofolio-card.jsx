@@ -48,7 +48,7 @@ export default function PortoCard ({ portofolio }){
   <article className="columns is-multiline">
  
  {
- portofolio.map(porto => {
+ portofolio.slice(0, 4).map(porto => {
         return (
 <div className="column is-3">
 {  isLoading ? <LoadingCard /> :  
@@ -83,7 +83,11 @@ export default function PortoCard ({ portofolio }){
  }
  
 </article>
-
+<div className={portofolio.length > 4 ? "is-flex justify-center" : "hide"}  >
+<Link href='/portofolio'>
+<button className="button is-primary">Read More</button>
+</Link>
+</div>
   {/* END CARD */}
 </div>
     )

@@ -3,9 +3,9 @@ import { client } from "../../lib/apollo";
 import PostCard from "../../components/PostCard";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { GET_ALL_POSTS } from "../../source/get-all-post";
+import { GET_PORTOFOLIO } from "../../source/get-portofolio";
  
-export default function BlogPage( {posts}) {
+export default function PortofolioPages({portofolio}) {
  
   const route = useRouter()
   const blogName = route.asPath.split("/")
@@ -18,9 +18,9 @@ export default function BlogPage( {posts}) {
  
    
  {
-  posts.map((post) => {
+ portofolio.map((post) => {
       return (
-        <PostCard key={post.uri} post={post} type={'posts'}></PostCard>
+        <PostCard key={post.uri} post={post} type={'prtofolio'}></PostCard>
       )
     })
 }
@@ -31,14 +31,14 @@ export default function BlogPage( {posts}) {
 }
 
 export async function getServerSideProps(context) {
-  const response = await client.query({
-    query: GET_ALL_POSTS,
-  });
-
-  const posts = response?.data?.posts?.nodes
+    const responsePortofolio = await client.query({
+        query:  GET_PORTOFOLIO,
+      });
+      
+      const portofolio = responsePortofolio?.data?.portofolios?.nodes
   return {
     props: {
-      posts
+        portofolio
     },
   };
 }

@@ -6,21 +6,7 @@ export const BannerPage = ( ) => {
     const value = useContext(AuthContext)
 
     return(
-        <section class="banner-hero ">
-    {/* {
-      hero.map(heros => {
-        return(
-<div class="hero-body txt-white is-flex flex-column align-center m-auto gap-1">
-  <h1 class="banner-title  ">
-      {heros?.title}
-  </h1>         
- <article className='is-title  banner-text' dangerouslySetInnerHTML={{__html: heros?.content}}>   
- </article>
-</div>     
-        )
-      })
-    } */}
-
+<section class="banner-hero  ">
     {
       value.hero.map(heros => {
        const titles =  heros?.title.split(",")
@@ -46,9 +32,6 @@ export const BannerPage = ( ) => {
         )
       })
     }
-  
-
-
 </section>
     )
 }

@@ -3,10 +3,10 @@ import Image from 'next/image';
 import formatDate from "../lib/timestamp";
 
 
-export default function PostCard ({ post ,color}){
+export default function PostCard ({ post ,type}){
  
     return (
-<Link href={`/posts${post.uri}`}>
+<Link href={type === 'posts' ? `/posts${post.uri}` : `/${post.uri}`}>
 
 <div className="box post-card p-0">
   <figure className={!post.featuredImage ? "hide" : "post-thumbnail"}>
@@ -46,8 +46,8 @@ export default function PostCard ({ post ,color}){
       post?.tags?.nodes.map(tag => {
        return (
         <Link href={`${tag.uri}`}>
-      <a className="tag is-primary">{tag.name}</a>
-    </Link>
+        <a className="tag is-primary">{tag.name}</a>
+      </Link>
        )
       })
     }

@@ -6,6 +6,10 @@ import { GET_PAGES_BY_URI } from "../../source/get-pages-by-uri";
  
 const SinglePage = ({pages}) => {
  
+  const submits = (e) => {
+    e.preventDefault()
+   
+  }
     return(
 <>
 <Head>
@@ -30,7 +34,11 @@ const SinglePage = ({pages}) => {
               <article dangerouslySetInnerHTML={{__html: pages.content}}>   
               </article>
 
- 
+ <form className="form" onSubmit={submits}>
+  <input className="input" />
+  <button className="button">Button</button>
+ </form>
+
 </section>
   
  

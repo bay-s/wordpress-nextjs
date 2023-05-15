@@ -305,6 +305,7 @@ text-align: center;
 
 .banner-text{
   font-size: 28px ;
+  cursor: default;
 }
 
 .banner-text p {
@@ -507,5 +508,28 @@ START RESPONSIVE
 @media screen and (max-width: 1023px){
   #main-container #containers{
    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 1000px){
+ 
+  .banner-hero .banner-title{
+    font-size: 70px;
+  }
+}
+
+
+@media screen and (max-width:816px){
+ 
+  .banner-hero {
+height: 75vh;
+    }
+
+    .banner-hero .banner-hero-body{
+padding: 50px;
+    }
+
+  .banner-hero .banner-title{
+    font-size: 50px;
   }
 }
