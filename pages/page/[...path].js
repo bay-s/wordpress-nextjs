@@ -2,21 +2,21 @@ import Head from "next/head";
 import { client } from "../../lib/apollo";
 import Image from 'next/image';
 import { GET_PAGES_BY_URI } from "../../source/get-pages-by-uri";
+import { useRouter } from "next/router";
+import { AboutPage } from "../../components/about-page";
  
- 
+
 const SinglePage = ({pages}) => {
- 
-  const submits = (e) => {
-    e.preventDefault()
-   
-  }
+  const route = useRouter()
+  const blogName = route.asPath.split("/")
+  const currentPages = blogName[blogName.length - 1]
     return(
 <>
 <Head>
  <title>Pages || {pages?.title}</title>
 </Head>
 
-<section className="is-flex flex-column gap-3" id="single-post">
+<section className="is-flex flex-column gap-5" id="single-post">
 
 <div className="siteHeader">
 <figure className={!pages.featuredImage  ? "hide" : "single-post-image"}>
@@ -31,13 +31,23 @@ const SinglePage = ({pages}) => {
 )}
 </figure>
 </div>
-              <article dangerouslySetInnerHTML={{__html: pages.content}}>   
-              </article>
+ 
+<div className={ currentPages === 'about' ? "is-flex flex-column gap-5" : "hide"}>
+<ul className="is-flex align-center gap-2">
+    <li>
+        <span className="txt-white title is-2">01</span>
+    </li>
+    <li>
+        <span className="has-text-primary is-title title is-2">WHO I AM</span>
+    </li>
+</ul>
+<article dangerouslySetInnerHTML={{__html: pages.content}} className="">   
+</article>
+</div>
 
- <form className="form" onSubmit={submits}>
-  <input className="input" />
-  <button className="button">Button</button>
- </form>
+ {
+  currentPages === 'about' ? <AboutPage /> : ""
+ }
 
 </section>
   

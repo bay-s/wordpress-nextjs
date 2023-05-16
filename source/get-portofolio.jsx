@@ -19,6 +19,20 @@ query GetPortofolio {
           name
         }
       }
+        categories {
+          nodes {
+            name
+            slug
+            uri
+          }
+        }
+        tags {
+          nodes {
+            name
+            uri
+            slug
+          }
+        }
     }
   }
 }

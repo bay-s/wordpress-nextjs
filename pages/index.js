@@ -42,6 +42,7 @@ export async function getServerSideProps(){
   const portofolio = responsePortofolio?.data?.portofolios?.nodes
   const  about = responseAbout?.data?.pageBy 
 
+  
   return {
     props: {
       portofolio,

@@ -18,6 +18,7 @@ import { useRouter } from 'next/router';
 import { GET_HERO } from '../source/get-hero';
 import { useEffect } from "react";
 import AOS from 'aos';
+import { GET_SKILLS } from '../source/get-skills';
 
 function MyApp({ Component, pageProps,siteProps}) {
   const {pathname} = useRouter()
@@ -33,7 +34,8 @@ useEffect(() => {
   siteInfo:siteProps.siteInfo,
   categories:siteProps.categories,
   footerInfo:siteProps.footerInfo,
-  hero:siteProps.hero
+  hero:siteProps.hero,
+  skills:siteProps.skills
  }
  const Layout = pathname === '/' ? MainLayout : BlogLaoyout;
 console.log(pathname);
@@ -76,7 +78,11 @@ MyApp.getInitialProps = async (ctx) => {
     query: GET_HERO,
   });
 
+  const responseSkills = await client.query({
+    query: GET_SKILLS,
+  });
 
+  const  skills = responseSkills?.data?.skills?.nodes
   const hero = responseHero?.data?.heroSections?.nodes
   const menus = response?.data?.menuItems?.edges;
   const siteInfo = responseTitle.data?.getHeader
@@ -88,7 +94,8 @@ MyApp.getInitialProps = async (ctx) => {
     siteInfo,
     categories,
     footerInfo,
-    hero
+    hero,
+    skills
   }
   return {
     siteProps
