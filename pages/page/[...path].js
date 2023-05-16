@@ -32,8 +32,8 @@ const SinglePage = ({pages}) => {
 </figure>
 </div>
  
-<div className={ currentPages === 'about' ? "is-flex flex-column gap-5" : "hide"}>
-<ul className="is-flex align-center gap-2">
+<div className="is-flex flex-column gap-5">
+<ul className={currentPages === 'about' ? "is-flex align-center gap-2" : "hide"}>
     <li>
         <span className="txt-white title is-2">01</span>
     </li>
