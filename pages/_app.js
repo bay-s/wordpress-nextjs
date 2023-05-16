@@ -12,13 +12,13 @@ import { GET_TITLE } from '../source/get-title';
 import Head from 'next/head';
 import { GET_FOOTER } from '../source/get-footer-info';
 import BlogLaoyout from '../components/blog-layout';
-import {  StateProvider } from './state-context';
 import MainLayout from '../components/layout';
 import { useRouter } from 'next/router';
 import { GET_HERO } from '../source/get-hero';
 import { useEffect } from "react";
 import AOS from 'aos';
 import { GET_SKILLS } from '../source/get-skills';
+import { StateProvider } from '../lib/state-context';
 
 function MyApp({ Component, pageProps,siteProps}) {
   const {pathname} = useRouter()

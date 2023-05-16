@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { AuthContext } from "../pages/state-context";
 import { useContext, useState } from "react";
+import { AuthContext } from "../lib/state-context";
 
 export default function Header( ) {
   const { menus, siteInfo, categories, footerInfo } = useContext(AuthContext);

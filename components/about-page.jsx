@@ -1,6 +1,6 @@
 import { useContext } from "react"
-import { AuthContext } from "../pages/state-context"
 import Image from "next/image"
+import { AuthContext } from "../lib/state-context"
 
  
 

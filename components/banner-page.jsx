@@ -1,6 +1,6 @@
 import { useContext } from "react"
-import { AuthContext } from "../pages/state-context"
-
+import { AuthContext } from "../lib/state-context"
+ 
 
 export const BannerPage = ( ) => {
     const value = useContext(AuthContext)
