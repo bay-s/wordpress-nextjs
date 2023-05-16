@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import PostCard from '../components/PostCard';
 import { client } from '../lib/apollo';
 import { GET_PORTOFOLIO } from '../source/get-portofolio';
 import PortoCard from '../components/portofolio-card';
