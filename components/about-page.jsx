@@ -14,7 +14,7 @@ export const AboutPage = ( ) => {
 <div className="is-flex flex-column align-start gap-7">
 <ul className="is-flex align-center gap-2">
     <li>
-        <span className="txt-white title is-2">02</span>
+        <span className="txt-white title is-2">02 -</span>
     </li>
     <li>
         <span className="has-text-primary is-title title is-2">PASSION</span>
@@ -72,7 +72,7 @@ export const AboutPage = ( ) => {
      />
       </li>
       <li>
-        <h3 className="is-title title is-3 txt-white">MUSIC</h3>
+        <h3 className="is-title title is-3 txt-white">STORY</h3>
       </li>
       </ul>
       <span className="lh-base has-text-grey-light py-5">
@@ -90,7 +90,7 @@ export const AboutPage = ( ) => {
 <div className="is-flex flex-column align-start gap-7">
 <ul className="is-flex align-center gap-2">
     <li>
-        <span className="txt-white title is-2">03</span>
+        <span className="txt-white title is-2">03 -</span>
     </li>
     <li>
         <span className="has-text-primary is-title title is-2">SKILLS</span>

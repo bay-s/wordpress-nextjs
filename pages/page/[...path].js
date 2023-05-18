@@ -35,7 +35,7 @@ const SinglePage = ({pages}) => {
 <div className="is-flex flex-column gap-5">
 <ul className={currentPages === 'about' ? "is-flex align-center gap-2" : "hide"}>
     <li>
-        <span className="txt-white title is-2">01</span>
+        <span className="txt-white title is-2">01 -</span>
     </li>
     <li>
         <span className="has-text-primary is-title title is-2">WHO I AM</span>
