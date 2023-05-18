@@ -4,7 +4,8 @@ import PostCard from "../../../components/PostCard"
 import { client } from "../../../lib/apollo"
 import Head from "next/head"
 import { GET_PAGINATION_PREV } from "../../../source/get-pagination-prev"
-import Link from "next/link"
+import PageLoaders from "../../../components/page-loader"
+import { useEffect, useState } from "react"
 
 
 const PreviousPagination = ({pagination}) => {
@@ -12,8 +13,22 @@ const PreviousPagination = ({pagination}) => {
     const route = useRouter()
     const blogName = route.asPath.split("/")
     const posts = pagination?.posts?.edges
-   console.log(pagination);
+    const [isLoading,setIsLoading] = useState(true)
+    console.log(pagination);
  
+    
+   useEffect(() => {
+    if(posts){
+      console.log('test');
+     const timer = setTimeout(() => {
+       setIsLoading(false)
+       }, 1000);
+       return () => clearTimeout(timer);
+    }
+   },[])
+
+  
+
    const nextPage = async (e) => {
     e.preventDefault()
     const id = e.target.dataset.id
@@ -24,6 +39,7 @@ const PreviousPagination = ({pagination}) => {
   }
    
     return(
+isLoading ? <PageLoaders /> :
 <>
 <Head>
 <title>Blog || {blogName[blogName.length - 1]}</title>

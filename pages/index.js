@@ -4,10 +4,9 @@ import { GET_PORTOFOLIO } from '../source/get-portofolio';
 import PortoCard from '../components/portofolio-card';
 import { GET_ABOUT  } from '../source/get-about';
 import { AboutCard } from '../components/about-card';
-import { GET_PAGINATION_PREV } from '../source/get-pagination-prev';
  
-export default function Home({siteInfo,portofolio, about,prevPost }) {
-console.log(prevPost); 
+export default function Home({siteInfo,portofolio, about }) {
+ 
   return (
   <>
   
@@ -43,20 +42,12 @@ export async function getServerSideProps(){
   const portofolio = responsePortofolio?.data?.portofolios?.nodes
   const  about = responseAbout?.data?.pageBy 
   
-  const responsePrev = await client.query({
-    query: GET_PAGINATION_PREV,
-    variables: {
-      before:"YXJyYXljb25uZWN0aW9uOjY4"
-    },
-  });
   
- 
-  const prevPost = responsePrev?.data;
   return {
     props: {
       portofolio,
       about,
-      prevPost
+ 
     }
   }
 }

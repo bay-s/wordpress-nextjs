@@ -3,14 +3,27 @@ import PostCard from "../../../components/PostCard"
 import { client } from "../../../lib/apollo"
 import { GET_PAGINATION_NEXT } from "../../../source/post-pagination"
 import Head from "next/head"
-
+import { useEffect, useState } from "react"
+import PageLoaders from "../../../components/page-loader"
 
 const NextPagination = ({pagination}) => {
     const route = useRouter()
     const blogName = route.asPath.split("/")
     const posts = pagination?.posts?.edges
    console.log(pagination);
- 
+   const [isLoading,setIsLoading] = useState(true)
+
+   useEffect(() => {
+    if(posts){
+      console.log('test');
+     const timer = setTimeout(() => {
+       setIsLoading(false)
+       }, 1000);
+       return () => clearTimeout(timer);
+    }
+   },[])
+
+  
    const nextPage = async (e) => {
     e.preventDefault()
     const id = e.target.dataset.id
@@ -21,6 +34,7 @@ const NextPagination = ({pagination}) => {
   }
    
     return(
+isLoading ? <PageLoaders /> :
 <>
 <Head>
 <title>Blog || {blogName[blogName.length - 1]}</title>
