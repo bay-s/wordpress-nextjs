@@ -47,7 +47,6 @@ export async function getServerSideProps(){
     props: {
       portofolio,
       about,
- 
     }
   }
 }

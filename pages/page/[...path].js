@@ -4,12 +4,15 @@ import Image from 'next/image';
 import { GET_PAGES_BY_URI } from "../../source/get-pages-by-uri";
 import { useRouter } from "next/router";
 import { AboutPage } from "../../components/about-page";
+import ContactForm from "../../components/contact-form";
  
-
+ 
 const SinglePage = ({pages}) => {
+ 
   const route = useRouter()
   const blogName = route.asPath.split("/")
   const currentPages = blogName[blogName.length - 1]
+ 
     return(
 <>
 <Head>
@@ -49,6 +52,9 @@ const SinglePage = ({pages}) => {
   currentPages === 'about' ? <AboutPage /> : ""
  }
 
+ {
+  currentPages === 'contact' ? <ContactForm /> : ""
+ }
 </section>
   
  
@@ -68,7 +74,8 @@ export async function getStaticProps({ params }){
     })
     
     const pages = response?.data?.pageBy
-    console.log(pages);
+ 
+    
     return {
       props: {
         pages

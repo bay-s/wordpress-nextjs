@@ -6,7 +6,7 @@ import formatDate from "../lib/timestamp";
 export default function PostCard ({ post ,type}){
  
     return (
-<Link href={type === 'posts' ? `/posts${post.uri}` : `/${post.uri}`}>
+<Link href={`/posts${post.uri}`}>
 
 <div className="box post-card p-0">
   <figure className={!post.featuredImage ? "hide" : "post-thumbnail"}>

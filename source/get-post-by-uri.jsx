@@ -21,6 +21,20 @@ query getPostByURI($id:ID!) {
         sourceUrl
       }
     }
+    categories {
+      nodes {
+        name
+        slug
+        uri
+      }
+    }
+    tags {
+      nodes {
+        name
+        uri
+        slug
+      }
+    }
     comments {
       nodes {
         content

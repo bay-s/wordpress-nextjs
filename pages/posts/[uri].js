@@ -6,10 +6,11 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { GET_NEXT_AND_PREVIOUS_POSTS } from '../../source/get-post-preview';
 import { useRouter } from 'next/router';
- 
+import Image from 'next/image';
+
 export default function SlugPage({ post,postPreview}) {
   const { query } = useRouter()
- 
+ console.log(post);
   let previousPost = null;
   let nextPost = null;
 
@@ -70,12 +71,12 @@ export default function SlugPage({ post,postPreview}) {
     console.error('Error:', error);
   }
   }
-
-  const user = {
-    name: "Maria",
-    email: "maria@example.com",
-    jwt: "jwt-string-value",
-  }
+ 
+  const date = new Date(post.date);
+  const day = date.getDate();
+  const monthName = date.toLocaleString('default', { month: 'long' });
+  const year = date.getFullYear();
+ 
   return (
     <>
 <Head>
@@ -93,34 +94,46 @@ export default function SlugPage({ post,postPreview}) {
 
 <section className='is-flex flex-column gap-2' id='single-post'>
  
+ <div className='is-flex flex-column  align-start'>
+ <h1 className='is-title title txt-white'>{post.title}</h1>
+ <ul className='is-flex align-center gap-1'>
+ <li>
  {
-  !post.featuredImage ?  <div className="is-flex flex-column  ">
-    <h1 className='is-title title txt-white'>{post.title}</h1>
-    <div className='is-flex align-center gap-1'>
-    <p className='txt-white is-bold '> {`${post.author.node.name}`}   </p>
-    <span className='is-bold'>-</span>
-      <p className='txt-white is-bold'>
-      { new Date(post.date).toLocaleDateString() }
-      </p>
-    </div>
-  </div>
-  :     <div className="banner-single-post" style={{ backgroundImage: `url(${post.featuredImage?.node?.sourceUrl})` }}>
-       <div className="overlay"></div>
- 
- <div className="banner-content py-3 ">
-    <h1 className='is-title title txt-white'>{post.title}</h1>
-    <div className='is-flex align-center gap-1'>
-    <p className='txt-white is-bold '> {`${post.author.node.name}`}   </p>
-    <span className='is-bold'>-</span>
-      <p className='txt-white is-bold'>
-      { new Date(post.date).toLocaleDateString() }
-      </p>
-    </div>
-  </div>
-  
-       </div>
-       /* END BANNER */
- }
+      post?.categories?.nodes.map(cat => {
+       return (
+          <span className="tag is-link">{cat.name}</span>
+       )
+      })
+    }
+ </li>
+ <li>
+ {
+      post?.tags?.nodes.map(tag => {
+       return (
+        <span className="tag is-primary">{tag.name}</span>
+       )
+      })
+    }
+ </li>
+ <li>
+  <span className='txt-white is-title txt-small'> {`${day}-${monthName}-${year}`} </span>
+ </li>
+ </ul>
+ </div>
+<div className="siteHeader">
+<figure className={!post.featuredImage  ? "hide" : "single-post-image"}>
+ {post.featuredImage?.node?.sourceUrl && (
+  <Image
+    loader={() => post.featuredImage?.node?.sourceUrl}
+    src={post.featuredImage?.node?.sourceUrl}
+    width={400}
+    height={250}
+    alt="Image description"  objectFit="cover"
+  />
+)}
+</figure>
+</div>
+
           <article className='lh-base' dangerouslySetInnerHTML={{__html: post.content}}>   
           </article>
  </section>

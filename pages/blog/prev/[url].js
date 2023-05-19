@@ -6,6 +6,7 @@ import Head from "next/head"
 import { GET_PAGINATION_PREV } from "../../../source/get-pagination-prev"
 import PageLoaders from "../../../components/page-loader"
 import { useEffect, useState } from "react"
+import Link from "next/link"
 
 
 const PreviousPagination = ({pagination}) => {
@@ -18,14 +19,16 @@ const PreviousPagination = ({pagination}) => {
  
     
    useEffect(() => {
+    setIsLoading(true)
     if(posts){
       console.log('test');
      const timer = setTimeout(() => {
+      console.log('stopu');
        setIsLoading(false)
        }, 1000);
        return () => clearTimeout(timer);
     }
-   },[])
+   },[pagination])
 
   
 
@@ -33,9 +36,19 @@ const PreviousPagination = ({pagination}) => {
     e.preventDefault()
     const id = e.target.dataset.id
     const currentId = e.target.dataset.current
-    alert(currentId);
-    route.push(`/blog/${currentId}/${id}`)
-    window.location.reload()
+    setIsLoading(true)
+    route.push(`/blog/next/${id}`)
+    alert(id)
+
+  }
+   
+  
+  const prevPage = async (e) => {
+    e.preventDefault()
+    const id = e.target.dataset.id
+    route.push(`/blog/prev/${id}`)
+    alert(id)
+    setIsLoading(true)
   }
    
     return(
@@ -56,11 +69,15 @@ isLoading ? <PageLoaders /> :
  
 <div className="is-flex justify-between w-100 align-center">
 {
-  pagination?.posts?.pageInfo?.hasPreviousPage ? <button className="button is-link" data-id={pagination?.posts?.pageInfo?.startCursor} data-current='prev' onClick={nextPage}>Previous Posts</button>
+  pagination?.posts?.pageInfo?.hasPreviousPage ? <Link href={`/blog/prev/${pagination?.posts?.pageInfo?.startCursor}`}>
+    <a className="button is-link">Previous Posts</a>
+  </Link>
   : <button className="button is-link" disabled>Previous Posts</button>
 }
 {
-  pagination?.posts?.pageInfo?.hasNextPage ? <button className="button is-link" data-id={pagination?.posts?.pageInfo?.endCursor} onClick={nextPage}>Next Posts</button>
+  pagination?.posts?.pageInfo?.hasNextPage ? <Link href={`/blog/next/${pagination?.posts?.pageInfo?.endCursor}`}>
+    <a class="button is-link">Next Posts</a>
+  </Link>
 : <button className="button is-link" data-current='next' disabled>Next Posts</button>
 }
 
