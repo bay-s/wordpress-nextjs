@@ -30,21 +30,22 @@ useEffect(() => {
   },[])
   
  const value = {
-  menus:siteProps.menus,
-  siteInfo:siteProps.siteInfo,
+  // menus:siteProps.menus,
+  // siteInfo:siteProps.siteInfo,
   categories:siteProps.categories,
-  footerInfo:siteProps.footerInfo,
-  hero:siteProps.hero,
-  skills:siteProps.skills
+  // footerInfo:siteProps.footerInfo,
+  // hero:siteProps.hero,
+  // skills:siteProps.skills
  }
  const Layout = pathname === '/' ? MainLayout : BlogLaoyout;
 console.log(pathname);
   return (
 <StateProvider value={value}>
 
-<Layout categories={siteProps.categories} footerInfo={siteProps.footerInfo}>
+{/* <Layout categories={siteProps.categories} footerInfo={siteProps.footerInfo}> */}
+<Layout categories={siteProps.categories} >
 <Head>
-  <link rel="icon" href={siteProps.siteInfo?.favicon}></link>
+  {/* <link rel="icon" href={siteProps.siteInfo?.favicon}></link> */}
 </Head>
  <ApolloProvider client={client}>
           <Component {...pageProps} />
@@ -54,6 +55,9 @@ console.log(pathname);
  </StateProvider>
     )
 }
+ 
+export default MyApp;
+
 
 MyApp.getInitialProps = async (ctx) => {
  
@@ -61,45 +65,43 @@ MyApp.getInitialProps = async (ctx) => {
     query:GET_CATEGORIES,
   })
  
-  const response = await client.query({
-    query: GET_MENUS,
-  });
+  // const response = await client.query({
+  //   query: GET_MENUS,
+  // });
  
  
-  const responseTitle = await client.query({
-    query: GET_TITLE,
-  });
+  // const responseTitle = await client.query({
+  //   query: GET_TITLE,
+  // });
  
-  const responseFooter = await client.query({
-    query: GET_FOOTER,
-  });
+  // const responseFooter = await client.query({
+  //   query: GET_FOOTER,
+  // });
 
-  const responseHero = await client.query({
-    query: GET_HERO,
-  });
+  // const responseHero = await client.query({
+  //   query: GET_HERO,
+  // });
 
-  const responseSkills = await client.query({
-    query: GET_SKILLS,
-  });
+  // const responseSkills = await client.query({
+  //   query: GET_SKILLS,
+  // });
 
-  const  skills = responseSkills?.data?.skills?.nodes
-  const hero = responseHero?.data?.heroSections?.nodes
-  const menus = response?.data?.menuItems?.edges;
-  const siteInfo = responseTitle.data?.getHeader
+  // const skills = responseSkills?.data?.skills?.nodes
+  // const hero = responseHero?.data?.heroSections?.nodes
+  // const menus = response?.data?.menuItems?.edges;
+  // const siteInfo = responseTitle.data?.getHeader
   const categories = responseCat?.data?.categories?.nodes
-  const footerInfo = responseFooter?.data?.getFooter
+  // const footerInfo = responseFooter?.data?.getFooter
  
   const siteProps = {
-    menus,
-    siteInfo,
+    // menus,
+    // siteInfo,
     categories,
-    footerInfo,
-    hero,
-    skills
+    // footerInfo,
+    // hero,
+    // skills
   }
   return {
     siteProps
   };
 };
-
-export default MyApp;

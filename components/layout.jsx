@@ -12,12 +12,12 @@ function MainLayout(props) {
  console.log(pathname);
   return (
 <>
-<Header />
+{/* <Header /> */}
 <main  id="main-container">
 
-{
+{/* {
   pathname === "/" ? <BannerPage /> : ""
-}
+} */}
 
 <div className='container w-100 ' id="containers">
   <section className="is-flex flex-column gap-5" id="main-element">
@@ -34,7 +34,7 @@ function MainLayout(props) {
 </div>
 
 </main>
-   <Footer footerInfo={props.footerInfo}/>
+   {/* <Footer footerInfo={props.footerInfo}/> */}
    </>
   );
 }
