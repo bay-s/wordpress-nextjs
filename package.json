@@ -8,6 +8,7 @@
   "dependencies": {
     "@apollo/client": "^3.5.10",
     "aos": "^2.3.4",
+    "disqus-react": "^1.1.5",
     "dotenv": "^16.0.3",
     "font-awesome": "^4.7.0",
     "graphql": "^16.3.0",

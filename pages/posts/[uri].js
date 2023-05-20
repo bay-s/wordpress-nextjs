@@ -7,7 +7,8 @@ import { useState } from 'react';
 import { GET_NEXT_AND_PREVIOUS_POSTS } from '../../source/get-post-preview';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-
+import DisqusComments from '../../components/disquss-comment';
+ 
 export default function SlugPage({ post,postPreview}) {
   const { query } = useRouter()
  console.log(post);
@@ -97,7 +98,7 @@ export default function SlugPage({ post,postPreview}) {
  <div className='is-flex flex-column  align-start'>
  <h1 className='is-title title txt-white'>{post.title}</h1>
  <ul className='is-flex align-center gap-1'>
- <li>
+ <li className='is-flex align-center gap-1'>
  {
       post?.categories?.nodes.map(cat => {
        return (
@@ -106,7 +107,7 @@ export default function SlugPage({ post,postPreview}) {
       })
     }
  </li>
- <li>
+ <li className='is-flex align-center gap-1'>
  {
       post?.tags?.nodes.map(tag => {
        return (
@@ -170,7 +171,9 @@ export default function SlugPage({ post,postPreview}) {
     )
   })
 }
-<form className='is-flex flex-column gap-1' data-post_id={post.postId} onSubmit={ submitComment} >
+
+<DisqusComments post={post} />
+{/* <form className='is-flex flex-column gap-1' data-post_id={post.postId} onSubmit={ submitComment} >
 <h3 class="label txt-white is-title">Leave a Reply</h3>
 
 <div class="field">
@@ -196,7 +199,7 @@ export default function SlugPage({ post,postPreview}) {
 
 <button className='button is-medium is-link navbar-end'>LEAVE COMMENT</button>
     </form>
- 
+  */}
   </div> 
  </div>
  

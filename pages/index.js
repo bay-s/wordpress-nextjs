@@ -4,9 +4,20 @@ import { GET_PORTOFOLIO } from '../source/get-portofolio';
 import PortoCard from '../components/portofolio-card';
 import { GET_ABOUT  } from '../source/get-about';
 import { AboutCard } from '../components/about-card';
+import { useEffect } from 'react';
  
 export default function Home({siteInfo,portofolio, about }) {
  
+  useEffect(() => {
+    
+    async function test(){
+      const gets = await fetch("https://jsonplaceholder.typicode.com/todos/1")
+      const res = await gets.json()
+      console.log(res);
+    }
+    test()
+  },[])
+
   return (
   <>
   
