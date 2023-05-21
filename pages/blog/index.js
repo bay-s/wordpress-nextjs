@@ -9,8 +9,7 @@ export default function BlogPage( {posts,pagi}) {
   
   const router = useRouter()
   const blogName = router.asPath.split("/")
- console.log(pagi);
- console.log(posts);
+ 
   const nextPage = async (e) => {
     e.preventDefault()
     const id = e.target.dataset.id

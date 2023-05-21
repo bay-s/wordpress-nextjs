@@ -45,8 +45,10 @@ const SinglePage = ({pages,skills}) => {
         <span className="has-text-primary is-title title is-2">WHO I AM</span>
     </li>
 </ul>
-<article dangerouslySetInnerHTML={{__html: pages.content}} className="">   
+{
+  currentPages === 'contact' ?  <h3 className="title is-2 is-title has-text-primary">Contact</h3> : <article dangerouslySetInnerHTML={{__html: pages.content}} className="">   
 </article>
+}
 </div>
 
 {

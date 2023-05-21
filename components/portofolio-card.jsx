@@ -2,23 +2,11 @@ import Link from "next/link"
 import Image from 'next/image';
 import formatDate from "../lib/timestamp";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import LoadingCard from "./animation-loading";
  
 export default function PortoCard ({ portofolio }){
   const router = useRouter();
   const titles = "Project".split("")
-  const [isLoading,setIsLoading] = useState(true)
-
-  useEffect(() => {
-   if(portofolio){
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-      }, 1000);
-      return () => clearTimeout(timer);
-   }
-  },[])
-
+ 
   const handleClick = (e) => {
     e.preventDefault();
  
@@ -51,7 +39,7 @@ export default function PortoCard ({ portofolio }){
  portofolio.slice(0, 4).map(porto => {
         return (
 <div className="column is-3">
-{  isLoading ? <LoadingCard /> :  
+
 <div className="box  p-0 post-card" data-aos="fade-up"
      data-aos-duration="1500">
 
@@ -76,7 +64,7 @@ export default function PortoCard ({ portofolio }){
       <p className="is-title has-text-grey-lighter">{porto?.author?.node?.name} - {formatDate(porto?.date)}</p>
     </div>
     </div>
-  }
+  
             </div>
         )
     })

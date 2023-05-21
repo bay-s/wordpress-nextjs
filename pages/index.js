@@ -4,15 +4,28 @@ import { GET_PORTOFOLIO } from '../source/get-portofolio';
 import PortoCard from '../components/portofolio-card';
 import { GET_ABOUT  } from '../source/get-about';
 import { AboutCard } from '../components/about-card';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import MainLayout from '../components/layout';
 import { GET_HERO } from '../source/get-hero';
 import { BannerPage } from '../components/banner-page';
+import PageLoaders from '../components/page-loader';
  
 export default function Home({siteInfo,portofolio, about ,hero}) {
   const {pathname} = useRouter()
-   console.log(pathname);
+
+  const [isLoading,setIsLoading] = useState(true)
+
+  useEffect(() => {
+   if(portofolio){
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+      }, 1000);
+      return () => clearTimeout(timer);
+   }
+  },[])
+
+
   return (
 
 <>
@@ -23,11 +36,14 @@ export default function Home({siteInfo,portofolio, about ,hero}) {
   pathname === "/" ? <BannerPage hero={hero}/> : ""
 }
 
-<MainLayout>
+{
+  isLoading ? <PageLoaders />
+  : <MainLayout>
 <AboutCard about={about} />
  <PortoCard portofolio={portofolio} />
 </MainLayout>
-
+ 
+}
 </>
   )
 }
