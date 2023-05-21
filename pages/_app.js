@@ -33,7 +33,7 @@ useEffect(() => {
   footerInfo:siteProps.footerInfo,
  }
 //  const Layout = pathname === '/' ? MainLayout : BlogLaoyout;
-const Layout = pathname === '/' ? null : BlogLaoyout;
+ 
 console.log(pathname);
   return (
 <StateProvider value={value}>
@@ -46,7 +46,7 @@ console.log(pathname);
       pathname === "/" ? <>
       <Component {...pageProps} />
       </>
-      : <BlogLaoyout>
+      : <BlogLaoyout categories={siteProps.categories}>
       <Component {...pageProps} />
       </BlogLaoyout>
     }
