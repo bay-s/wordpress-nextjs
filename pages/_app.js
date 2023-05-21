@@ -96,9 +96,9 @@ MyApp.getInitialProps = async (ctx) => {
  
   const siteProps = {
     menus,
-    siteInfo,
+    // siteInfo,
     categories,
-    footerInfo,
+    // footerInfo,
     // hero,
     // skills
   }
