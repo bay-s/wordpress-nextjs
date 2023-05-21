@@ -30,9 +30,9 @@ useEffect(() => {
   
  const value = {
   menus:siteProps.menus,
-  siteInfo:siteProps.siteInfo,
+  // siteInfo:siteProps.siteInfo,
   categories:siteProps.categories,
-  footerInfo:siteProps.footerInfo,
+  // footerInfo:siteProps.footerInfo,
   // hero:siteProps.hero,
   // skills:siteProps.skills
  }
@@ -90,9 +90,9 @@ MyApp.getInitialProps = async (ctx) => {
   // const  skills = responseSkills?.data?.skills?.nodes
   // const hero = responseHero?.data?.heroSections?.nodes
   const menus = response?.data?.menuItems?.edges;
-  const siteInfo = responseTitle.data?.getHeader
+  // const siteInfo = responseTitle.data?.getHeader
   const categories = responseCat?.data?.categories?.nodes
-  const footerInfo = responseFooter?.data?.getFooter
+  // const footerInfo = responseFooter?.data?.getFooter
  
   const siteProps = {
     menus,

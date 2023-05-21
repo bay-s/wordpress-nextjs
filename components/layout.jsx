@@ -12,7 +12,7 @@ function MainLayout(props) {
  
   return (
 <>
-<Header />
+{/* <Header /> */}
 <main  id="main-container">
 
 {/* {
