@@ -5,30 +5,26 @@ import PortoCard from '../components/portofolio-card';
 import { GET_ABOUT  } from '../source/get-about';
 import { AboutCard } from '../components/about-card';
 import { useEffect } from 'react';
+import { GET_SKILLS } from '../source/get-skills';
+import { useRouter } from 'next/router';
+import MainLayout from '../components/layout';
  
 export default function Home({siteInfo,portofolio, about }) {
- 
-  useEffect(() => {
-    
-    async function test(){
-      const gets = await fetch("https://jsonplaceholder.typicode.com/todos/1")
-      const res = await gets.json()
-      console.log(res);
-    }
-    test()
-  },[])
-
+  const {pathname} = useRouter()
+   console.log(pathname);
   return (
-  <>
-  
- <Head>
+
+<MainLayout>
+<Head>
  <title>{siteInfo?.siteTagLine}</title>
  </Head>
- {/* <BannerPage hero={hero}/> */}
+ 
+<div>
 <AboutCard about={about} />
-<PortoCard portofolio={portofolio} />
+ <PortoCard portofolio={portofolio} />
+</div>
+</MainLayout>
 
-</>
   )
 }
 
