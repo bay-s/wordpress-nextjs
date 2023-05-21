@@ -5,26 +5,30 @@ import PortoCard from '../components/portofolio-card';
 import { GET_ABOUT  } from '../source/get-about';
 import { AboutCard } from '../components/about-card';
 import { useEffect } from 'react';
-import { GET_SKILLS } from '../source/get-skills';
 import { useRouter } from 'next/router';
 import MainLayout from '../components/layout';
+import { GET_HERO } from '../source/get-hero';
+import { BannerPage } from '../components/banner-page';
  
-export default function Home({siteInfo,portofolio, about }) {
+export default function Home({siteInfo,portofolio, about ,hero}) {
   const {pathname} = useRouter()
    console.log(pathname);
   return (
 
-<MainLayout>
+<>
 <Head>
  <title>{siteInfo?.siteTagLine}</title>
- </Head>
- 
-<div>
+</Head>
+ {
+  pathname === "/" ? <BannerPage hero={hero}/> : ""
+}
+
+<MainLayout>
 <AboutCard about={about} />
  <PortoCard portofolio={portofolio} />
-</div>
 </MainLayout>
 
+</>
   )
 }
 
@@ -45,7 +49,11 @@ export async function getServerSideProps(){
     query: GET_ABOUT,
   });
 
+  const responseHero = await client.query({
+    query: GET_HERO,
+  });
  
+  const hero = responseHero?.data?.heroSections?.nodes
   const portofolio = responsePortofolio?.data?.portofolios?.nodes
   const  about = responseAbout?.data?.pageBy 
   
@@ -54,6 +62,7 @@ export async function getServerSideProps(){
     props: {
       portofolio,
       about,
+      hero
     }
   }
 }

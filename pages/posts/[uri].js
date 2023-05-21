@@ -173,33 +173,7 @@ export default function SlugPage({ post,postPreview}) {
 }
 
 <DisqusComments post={post} />
-{/* <form className='is-flex flex-column gap-1' data-post_id={post.postId} onSubmit={ submitComment} >
-<h3 class="label txt-white is-title">Leave a Reply</h3>
-
-<div class="field">
-  <label class="label txt-white is-title">Name</label>
-  <div class="control">
-    <input className='input' name='name' type='text' onChange={handlerChange}/>
-  </div>
-</div>
-
-<div class="field">
-  <label class="label txt-white is-title">Message</label>
-  <div class="control">
-  <input className='input' name='email' type='email' onChange={handlerChange}/>
-  </div>
-</div>
  
-<div class="field">
-  <label class="label txt-white is-title">Message</label>
-  <div class="control">
-    <textarea class="textarea no-bg is-primary txt-white" name='message' placeholder="Comments" onChange={handlerChange}></textarea>
-  </div>
-</div>
-
-<button className='button is-medium is-link navbar-end'>LEAVE COMMENT</button>
-    </form>
-  */}
   </div> 
  </div>
  

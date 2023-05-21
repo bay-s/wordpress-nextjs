@@ -8,7 +8,7 @@ function BlogLaoyout(props) {
  
   return (
 <>
-{/* <Header /> */}
+<Header />
 <main className="mt-6 pt-5  " id="main-container">
  
 <div className='container w-100 mt-auto' id="containers">
@@ -22,7 +22,7 @@ function BlogLaoyout(props) {
     </section>
 </div>
 
-{/* <Footer footerInfo={props.footerInfo}/>  */}
+<Footer /> 
 
 </main>
  

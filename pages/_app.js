@@ -14,10 +14,8 @@ import { GET_FOOTER } from '../source/get-footer-info';
 import BlogLaoyout from '../components/blog-layout';
 import MainLayout from '../components/layout';
 import { useRouter } from 'next/router';
-import { GET_HERO } from '../source/get-hero';
 import { useEffect } from "react";
 import AOS from 'aos';
-import { GET_SKILLS } from '../source/get-skills';
 import { StateProvider } from '../lib/state-context';
 
 function MyApp({ Component, pageProps,siteProps}) {
@@ -30,11 +28,9 @@ useEffect(() => {
   
  const value = {
   menus:siteProps.menus,
-  // siteInfo:siteProps.siteInfo,
+  siteInfo:siteProps.siteInfo,
   categories:siteProps.categories,
-  // footerInfo:siteProps.footerInfo,
-  // hero:siteProps.hero,
-  // skills:siteProps.skills
+  footerInfo:siteProps.footerInfo,
  }
 //  const Layout = pathname === '/' ? MainLayout : BlogLaoyout;
 const Layout = pathname === '/' ? null : BlogLaoyout;
@@ -71,36 +67,25 @@ MyApp.getInitialProps = async (ctx) => {
   });
  
  
-  // const responseTitle = await client.query({
-  //   query: GET_TITLE,
-  // });
+  const responseTitle = await client.query({
+    query: GET_TITLE,
+  });
  
-  // const responseFooter = await client.query({
-  //   query: GET_FOOTER,
-  // });
+  const responseFooter = await client.query({
+    query: GET_FOOTER,
+  });
 
-  // const responseHero = await client.query({
-  //   query: GET_HERO,
-  // });
-
-  // const responseSkills = await client.query({
-  //   query: GET_SKILLS,
-  // });
-
-  // const  skills = responseSkills?.data?.skills?.nodes
-  // const hero = responseHero?.data?.heroSections?.nodes
+ 
   const menus = response?.data?.menuItems?.edges;
-  // const siteInfo = responseTitle.data?.getHeader
+  const siteInfo = responseTitle.data?.getHeader
   const categories = responseCat?.data?.categories?.nodes
-  // const footerInfo = responseFooter?.data?.getFooter
+  const footerInfo = responseFooter?.data?.getFooter
  
   const siteProps = {
     menus,
-    // siteInfo,
+    siteInfo,
     categories,
-    // footerInfo,
-    // hero,
-    // skills
+    footerInfo
   }
   return {
     siteProps

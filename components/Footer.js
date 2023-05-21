@@ -1,6 +1,9 @@
 import Link from "next/link"
+import { useContext } from "react";
+import { AuthContext } from "../lib/state-context";
 
-export default function Footer ({footerInfo}){
+export default function Footer ( ){
+  const { footerInfo} = useContext(AuthContext);
     return (
         <footer className="footers  p-5 mt-5  footer-dark">
           <div className="is-flex justify-arround ">

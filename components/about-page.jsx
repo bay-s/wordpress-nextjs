@@ -1,11 +1,9 @@
-import { useContext } from "react"
-import Image from "next/image"
-import { AuthContext } from "../lib/state-context"
 
+import Image from "next/image"
+ 
  
 
-export const AboutPage = ( ) => {
-   const value = useContext(AuthContext)
+export const AboutPage = ({skills}) => {
  
     return(
 <article className="is-flex flex-column gap-3">
@@ -98,7 +96,7 @@ export const AboutPage = ( ) => {
 </ul>
 <div className="columns is-multiline">
  {
-    value?.skills.map(skill => {
+  skills.map(skill => {
  
         return(
         <div className="column is-6 is-flex align-center gap-1">

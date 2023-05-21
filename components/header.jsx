@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../lib/state-context";
 
 export default function Header( ) {
-  const { menus, siteInfo, categories, footerInfo } = useContext(AuthContext);
+  const { menus, siteInfo,} = useContext(AuthContext);
  const [isOpen,setIsOpen] = useState(false)
 
  const openDropdown = (e) => {

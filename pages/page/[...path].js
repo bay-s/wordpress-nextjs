@@ -5,10 +5,11 @@ import { GET_PAGES_BY_URI } from "../../source/get-pages-by-uri";
 import { useRouter } from "next/router";
 import { AboutPage } from "../../components/about-page";
 import ContactForm from "../../components/contact-form";
+import { GET_SKILLS } from "../../source/get-skills";
  
  
-const SinglePage = ({pages}) => {
- 
+const SinglePage = ({pages,skills}) => {
+ console.log(skills);
   const route = useRouter()
   const blogName = route.asPath.split("/")
   const currentPages = blogName[blogName.length - 1]
@@ -48,8 +49,8 @@ const SinglePage = ({pages}) => {
 </article>
 </div>
 
- {
-  currentPages === 'about' ? <AboutPage /> : ""
+{
+  currentPages === 'about' ? <AboutPage skills={skills} /> : ""
  }
 
  {
@@ -66,19 +67,24 @@ export default SinglePage
 
 export async function getStaticProps({ params }){
     const path = params.path.join("/")
-    console.log(path);
  
     const response = await client.query({
       query:GET_PAGES_BY_URI,
       variables: { path }
     })
     
+    const responseSkills = await client.query({
+      query: GET_SKILLS,
+    });
+  
+    const  skills = responseSkills?.data?.skills?.nodes
     const pages = response?.data?.pageBy
  
     
     return {
       props: {
-        pages
+        pages,
+        skills
       }
     }
   }

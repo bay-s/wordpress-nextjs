@@ -2,13 +2,13 @@ import { useContext } from "react"
 import { AuthContext } from "../lib/state-context"
  
 
-export const BannerPage = ( ) => {
+export const BannerPage = ({hero}) => {
     const value = useContext(AuthContext)
 
     return(
 <section class="banner-hero  ">
     {
-      value.hero.map(heros => {
+      hero.map(heros => {
        const titles =  heros?.title.split(",")
         return(
 <div class="banner-hero-body txt-white is-flex flex-column align-start gap-2 ">
