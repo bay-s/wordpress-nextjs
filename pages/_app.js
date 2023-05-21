@@ -33,8 +33,8 @@ useEffect(() => {
   siteInfo:siteProps.siteInfo,
   categories:siteProps.categories,
   footerInfo:siteProps.footerInfo,
-  hero:siteProps.hero,
-  skills:siteProps.skills
+  // hero:siteProps.hero,
+  // skills:siteProps.skills
  }
 //  const Layout = pathname === '/' ? MainLayout : BlogLaoyout;
 const Layout = pathname === '/' ? null : BlogLaoyout;
@@ -87,7 +87,7 @@ MyApp.getInitialProps = async (ctx) => {
     query: GET_SKILLS,
   });
 
-  const  skills = responseSkills?.data?.skills?.nodes
+  // const  skills = responseSkills?.data?.skills?.nodes
   // const hero = responseHero?.data?.heroSections?.nodes
   const menus = response?.data?.menuItems?.edges;
   const siteInfo = responseTitle.data?.getHeader
@@ -100,7 +100,7 @@ MyApp.getInitialProps = async (ctx) => {
     categories,
     footerInfo,
     // hero,
-    skills
+    // skills
   }
   return {
     siteProps
