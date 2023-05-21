@@ -71,21 +71,21 @@ MyApp.getInitialProps = async (ctx) => {
   });
  
  
-  const responseTitle = await client.query({
-    query: GET_TITLE,
-  });
+  // const responseTitle = await client.query({
+  //   query: GET_TITLE,
+  // });
  
-  const responseFooter = await client.query({
-    query: GET_FOOTER,
-  });
+  // const responseFooter = await client.query({
+  //   query: GET_FOOTER,
+  // });
 
-  const responseHero = await client.query({
-    query: GET_HERO,
-  });
+  // const responseHero = await client.query({
+  //   query: GET_HERO,
+  // });
 
-  const responseSkills = await client.query({
-    query: GET_SKILLS,
-  });
+  // const responseSkills = await client.query({
+  //   query: GET_SKILLS,
+  // });
 
   // const  skills = responseSkills?.data?.skills?.nodes
   // const hero = responseHero?.data?.heroSections?.nodes
