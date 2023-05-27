@@ -62,28 +62,28 @@ MyApp.getInitialProps = async (ctx) => {
     query:GET_CATEGORIES,
   })
  
-  const response = await client.query({
-    query: GET_MENUS,
-  });
+  // const response = await client.query({
+  //   query: GET_MENUS,
+  // });
  
  
-  const responseTitle = await client.query({
-    query: GET_TITLE,
-  });
+  // const responseTitle = await client.query({
+  //   query: GET_TITLE,
+  // });
  
   const responseFooter = await client.query({
     query: GET_FOOTER,
   });
 
  
-  const menus = response?.data?.menuItems?.edges;
-  const siteInfo = responseTitle.data?.getHeader
+  // const menus = response?.data?.menuItems?.edges;
+  // const siteInfo = responseTitle.data?.getHeader
   const categories = responseCat?.data?.categories?.nodes
   const footerInfo = responseFooter?.data?.getFooter
  
   const siteProps = {
-    menus,
-    siteInfo,
+    // menus,
+    // siteInfo,
     categories,
     footerInfo
   }

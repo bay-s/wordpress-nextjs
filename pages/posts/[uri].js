@@ -11,7 +11,7 @@ import DisqusComments from '../../components/disquss-comment';
  
 export default function SlugPage({ post,postPreview}) {
   const { query } = useRouter()
- console.log(post);
+  
   let previousPost = null;
   let nextPost = null;
 
@@ -75,7 +75,7 @@ export default function SlugPage({ post,postPreview}) {
  
   const date = new Date(post.date);
   const day = date.getDate();
-  const monthName = date.toLocaleString('default', { month: 'long' });
+  const month = date.toLocaleString('default', { month: 'long' });
   const year = date.getFullYear();
  
   return (
@@ -117,7 +117,7 @@ export default function SlugPage({ post,postPreview}) {
     }
  </li>
  <li>
-  <span className='txt-white is-title txt-small'> {`${day}-${monthName}-${year}`} </span>
+  <span className='txt-white is-title txt-small'> {`${day}-${month }-${year}`} </span>
  </li>
  </ul>
  </div>

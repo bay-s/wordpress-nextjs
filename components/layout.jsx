@@ -10,7 +10,7 @@ function MainLayout(props) {
 
   return (
 <>
-<Header />
+{/* <Header /> */}
 <main  id="main-container">
 
 <div className='container w-100 ' id="containers">
