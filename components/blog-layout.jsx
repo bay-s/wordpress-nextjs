@@ -8,7 +8,7 @@ function BlogLaoyout(props) {
  console.log(props);
   return (
 <>
-{/* <Header /> */}
+<Header />
 <main className="mt-6 pt-5  " id="main-container">
  
 <div className='container w-100 mt-auto' id="containers">

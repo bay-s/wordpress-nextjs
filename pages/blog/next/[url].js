@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import PostCard from "../../../components/PostCard"
 import { client } from "../../../lib/apollo"
-import { GET_PAGINATION_NEXT } from "../../../source/post-pagination"
+import { GET_PAGINATION_NEXT } from "../../../source/get-pagination-next"
 import Head from "next/head"
 import { useEffect, useState } from "react"
 import PageLoaders from "../../../components/page-loader"
@@ -94,8 +94,7 @@ export default NextPagination
 
 export async function getServerSideProps(context) {
     const postId = context.query.url;
-console.log(context.query);
-console.log('slugs');
+ 
     const response = await client.query({
       query:  GET_PAGINATION_NEXT ,
       variables: {

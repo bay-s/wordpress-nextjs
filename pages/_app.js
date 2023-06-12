@@ -12,7 +12,6 @@ import { GET_TITLE } from '../source/get-title';
 import Head from 'next/head';
 import { GET_FOOTER } from '../source/get-footer-info';
 import BlogLaoyout from '../components/blog-layout';
-import MainLayout from '../components/layout';
 import { useRouter } from 'next/router';
 import { useEffect } from "react";
 import AOS from 'aos';
@@ -62,31 +61,32 @@ MyApp.getInitialProps = async (ctx) => {
     query:GET_CATEGORIES,
   })
  
-  // const response = await client.query({
-  //   query: GET_MENUS,
-  // });
+  const response = await client.query({
+    query: GET_MENUS,
+  });
  
  
-  // const responseTitle = await client.query({
-  //   query: GET_TITLE,
-  // });
+  const responseTitle = await client.query({
+    query: GET_TITLE,
+  });
  
   const responseFooter = await client.query({
     query: GET_FOOTER,
   });
 
  
-  // const menus = response?.data?.menuItems?.edges;
-  // const siteInfo = responseTitle.data?.getHeader
+  const menus = response?.data?.menuItems?.edges;
+  const siteInfo = responseTitle.data?.getHeader
   const categories = responseCat?.data?.categories?.nodes
   const footerInfo = responseFooter?.data?.getFooter
  
   const siteProps = {
-    // menus,
-    // siteInfo,
+    menus,
+    siteInfo,
     categories,
     footerInfo
   }
+
   return {
     siteProps
   };

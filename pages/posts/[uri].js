@@ -117,7 +117,7 @@ export default function SlugPage({ post,postPreview}) {
     }
  </li>
  <li>
-  <span className='txt-white is-title txt-small'> {`${day}-${month }-${year}`} </span>
+  <span className='txt-white is-title txt-small'> {`${day}-${month}-${year}`} </span>
  </li>
  </ul>
  </div>
