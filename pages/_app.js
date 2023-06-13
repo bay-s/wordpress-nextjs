@@ -7,45 +7,91 @@ import 'aos/dist/aos.css';
 import { ApolloProvider, gql } from '@apollo/client'
 import { client } from '../lib/apollo'
 import { GET_MENUS } from '../source/get-menu'
-import { GET_CATEGORIES } from '../source/get-categories';
 import { GET_TITLE } from '../source/get-title';
 import Head from 'next/head';
-import { GET_FOOTER } from '../source/get-footer-info';
 import BlogLaoyout from '../components/blog-layout';
 import { useRouter } from 'next/router';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from 'aos';
 import { StateProvider } from '../lib/state-context';
 
-function MyApp({ Component, pageProps,siteProps}) {
+function MyApp({ Component, pageProps }) {
   const {pathname} = useRouter()
-
- 
+  const [item,setItem] = useState({
+    categories:[],
+    footerInfo:[],
+    menus:[],
+    siteInfo:[]
+  })
 useEffect(() => {
   AOS.init()
+  getCategories()
+  getFooter()
+  getSiteTitle()
+  getMenus()
   },[])
   
- const value = {
-  menus:siteProps.menus,
-  siteInfo:siteProps.siteInfo,
-  categories:siteProps.categories,
-  footerInfo:siteProps.footerInfo,
+ const getCategories = async () => {
+   const response = await fetch(`/api/get-categories`)
+   const data = await response.json()
+   setItem(prevState => ({
+    ...prevState,
+    categories: data
+  }));
+  
+   console.log(item);
  }
-//  const Layout = pathname === '/' ? MainLayout : BlogLaoyout;
+
+ const getFooter = async () => {
+  const response = await fetch(`/api/get-footer`)
+  const data = await response.json()
+  setItem(prevState => ({
+    ...prevState,
+    footerInfo: data
+  }));
+  
+ }
+
+ const getMenus= async () => {
+  const response = await fetch(`/api/get-menus`)
+  const data = await response.json()
+  setItem(prevState => ({
+    ...prevState,
+    menus: data
+  }));
+  
+ }
+
+ const getSiteTitle = async () => {
+  const response = await fetch(`/api/get-site-title`)
+  const data = await response.json()
+  setItem(prevState => ({
+    ...prevState,
+    siteInfo: data
+  }));
+  
+ }
+
+ const value = {
+  menus:item.menus,
+  siteInfo:item.siteInfo,
+  categories:item.categories,
+  footerInfo:item.footerInfo,
+ }
  
-console.log(pathname);
+ 
   return (
 <StateProvider value={value}>
 
   <Head>
-  <link rel="icon" href={siteProps.siteInfo?.favicon}></link>
+  <link rel="icon" href={item.siteInfo?.favicon}></link>
   </Head>
 <ApolloProvider client={client}>
     {
       pathname === "/" ? <>
       <Component {...pageProps} />
       </>
-      : <BlogLaoyout categories={siteProps.categories}>
+      : <BlogLaoyout categories={item.categories}>
       <Component {...pageProps} />
       </BlogLaoyout>
     }
@@ -54,51 +100,6 @@ console.log(pathname);
  </StateProvider>
     )
 }
-
-MyApp.getInitialProps = async (ctx) => {
  
-  const responseCat = await client.query({
-    query:GET_CATEGORIES,
-  })
- 
-  const response = await client.query({
-    query: GET_MENUS,
-  });
- 
- 
-  const responseTitle = await client.query({
-    query: GET_TITLE,
-  });
- 
-  const responseFooter = await client.query({
-    query: GET_FOOTER,
-  });
-
- 
-  const menus = response?.data?.menuItems?.edges;
-  const siteInfo = responseTitle.data?.getHeader
-  const categories = responseCat?.data?.categories?.nodes
-  const footerInfo = responseFooter?.data?.getFooter
- 
-  const siteProps = {
-    menus,
-    siteInfo,
-    categories,
-    footerInfo
-  }
-
-  return {
-    siteProps
-  };
-};
-
 export default MyApp;
 
-{/* <Layout categories={siteProps.categories} footerInfo={siteProps.footerInfo}>
-<Head>
-  <link rel="icon" href={siteProps.siteInfo?.favicon}></link>
-</Head>
- <ApolloProvider client={client}>
-          <Component {...pageProps} />
-</ApolloProvider>
- </Layout> */}

@@ -3,7 +3,9 @@ import { useContext } from "react";
 import { AuthContext } from "../lib/state-context";
 
 export default function Footer ( ){
-  const { footerInfo} = useContext(AuthContext);
+  const { footerInfo } = useContext(AuthContext);
+
+  console.log(footerInfo);
     return (
         <footer className="footers  p-5 mt-5  footer-dark">
           <div className="is-flex justify-arround ">
@@ -13,11 +15,11 @@ export default function Footer ( ){
             rel="noopener noreferrer"
             className="has-text-primary"
             >
-           {footerInfo.copyrightText}
+           {footerInfo?.copyrightText}
             </a>
             <ul className="is-flex align-center gap-2">
               {
-                footerInfo?.socialLinks.map(social => {
+                footerInfo?.socialLinks?.map(social => {
                 return(
                 <li>
                   <Link href={social?.iconUrl}>
