@@ -1,12 +1,10 @@
 
-import { client } from "../../lib/apollo";
 import PostCard from "../../components/PostCard";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import {  GET_PAGINATION_NEXT } from "../../source/get-pagination-next";
 import { useEffect, useState } from "react";
 
-export default function BlogPage( {posts,pagi}) {
+export default function BlogPage( ) {
  
   const router = useRouter()
   const blogName = router.asPath.split("/")
@@ -98,26 +96,10 @@ export default function BlogPage( {posts,pagi}) {
   )
 }
 
-export async function getServerSideProps(context) {
-  const response = await client.query({
-    query:  GET_PAGINATION_NEXT,
-  });
-
-  const responsePagination = await client.query({
-    query: GET_PAGINATION_NEXT ,
-    variables: {
-      after: null // Set the 'after' variable to null
-    }
-  });
-
-  
-  const posts = response?.data?.posts?.edges
-  const pagi = responsePagination?.data.posts 
+export async function getServerSideProps( ) {
+ 
   return {
-    props: {
-      posts,
-      pagi,
-    },
+    props: { }
  
   };
 }
