@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const GET_PAGINATION_PREV = gql`
 query GetPostsBefore($before: String ) {
-    posts(last: 3, before: $before ) {
+    posts(last: 5, before: $before ) {
       edges {
         node {
           title

@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const GET_PAGINATION_NEXT = gql`
 query GetPosts($after: String ) {
-    posts(first: 3, after: $after ) {
+    posts(first: 5, after: $after ) {
       edges {
         node {
           title
