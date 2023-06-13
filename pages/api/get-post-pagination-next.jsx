@@ -20,7 +20,7 @@ async function getPostPaginationNext(req, res) {
 
         const postNext = response?.data;
  console.log(response?.data?.posts?.edges);
- console.log('POST');
+ console.log('POST test');
         res.status(200).json(postNext);
       } catch (error) {
         console.error(error);
@@ -31,10 +31,4 @@ async function getPostPaginationNext(req, res) {
   
   export default  getPostPaginationNext;
  
-  // export default function(req, res) {
-  //   // Refresh the code here
-  //   const refreshedCode = require('fs').readFileSync(__filename, 'utf8');
-  //   eval(refreshedCode);
-  //   getPostPaginationNext(req, res);
-  // }
-     
+ 

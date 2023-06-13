@@ -5,16 +5,16 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import {  GET_PAGINATION_NEXT } from "../../source/get-pagination-next";
 import { useEffect, useState } from "react";
- 
+
 export default function BlogPage( {posts,pagi}) {
-  console.log(pagi);
+ 
   const router = useRouter()
   const blogName = router.asPath.split("/")
   const [hasNextPage,setHasNextPage] = useState(false)
   const [hasPreviousPage,setHasPreviousPage] = useState(false)
 
   const [post,setPost] = useState([])
-
+  let currentId = null
   useEffect(() => {
  
     const fetchPagination = async ( ) => {
@@ -23,6 +23,8 @@ export default function BlogPage( {posts,pagi}) {
       setHasNextPage(dataPost?.posts?.pageInfo?.hasNextPage)
       setHasPreviousPage(dataPost?.posts?.pageInfo?.hasPreviousPage)
       setPost(dataPost)
+
+      
     }
     fetchPagination()
   },[])
@@ -30,7 +32,9 @@ export default function BlogPage( {posts,pagi}) {
   const nextPage = async (e) => {
     e.preventDefault()
     const id = e.target.dataset.id
-    fetchNextPagination(id)
+    currentId = id; // Update the currentId variable
+    fetchNextPagination(currentId);
+ 
   }
 
   const prevPage = async (e) => {
@@ -112,7 +116,8 @@ export async function getServerSideProps(context) {
   return {
     props: {
       posts,
-      pagi
+      pagi,
     },
+ 
   };
 }
