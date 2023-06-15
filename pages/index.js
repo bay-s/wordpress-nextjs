@@ -7,23 +7,22 @@ import MainLayout from '../components/layout';
 import { BannerPage } from '../components/banner-page';
 import PageLoaders from '../components/page-loader';
 import { AuthContext } from '../lib/state-context';
+import { GET_HERO } from '../source/get-hero';
+import { GET_ABOUT } from '../source/get-about';
+import { GET_PORTOFOLIO } from '../source/get-portofolio';
+import { client } from '../lib/apollo';
  
-export default function Home( ) {
+ 
+ 
+export default function Home({data}) {
   const {pathname} = useRouter()
   const { siteInfo } = useContext(AuthContext)
-  const [datas,setDatas] = useState({
-    about:[],
-    portofolio:[],
-    hero:[]
-  })
+ 
   const [isLoading,setIsLoading] = useState(true)
  
   useEffect(() => {
-    fetchAbout()
-    fetchHero()
-    fetchPortofolio()
-  
-   if(datas?.portofolio){
+
+   if(data?.portofolio){
     const timer = setTimeout(() => {
       setIsLoading(false)
       }, 1000);
@@ -32,39 +31,7 @@ export default function Home( ) {
 
   },[])
 
-const fetchAbout = async () => {
-  const response = await fetch(`/api/get-about`)
-  const data = await response.json()
-  setDatas(prevState => ({
-   ...prevState,
-   about: data
- }));
  
-  console.log(data);
-}
-
-const fetchHero = async () => {
-  const response = await fetch(`/api/get-hero`)
-  const data = await response.json()
-  setDatas(prevState => ({
-   ...prevState,
-   hero: data
- }));
- 
-  console.log(data);
-}
-
-const fetchPortofolio = async () => {
-  const response = await fetch(`/api/get-portofolio`)
-  const data = await response.json()
-  setDatas(prevState => ({
-   ...prevState,
-   portofolio: data
- }));
- 
-  console.log(data);
-}
-
 console.log( siteInfo);
   return (
 
@@ -73,14 +40,14 @@ console.log( siteInfo);
  <title>{siteInfo?.siteTitle} || {siteInfo?.siteTagLine}</title>
 </Head>
  {
-  pathname === "/" ? <BannerPage hero={datas?.hero}/> : ""
+  pathname === "/" ? <BannerPage hero={data?.hero}/> : ""
  }
 
 {
   isLoading ? <PageLoaders />
   : <MainLayout>
-<AboutCard about={datas?.about} />
- <PortoCard portofolio={datas?.portofolio} />
+<AboutCard about={data?.about} />
+ <PortoCard portofolio={data?.portofolio} />
 </MainLayout>
  
 }
@@ -90,8 +57,28 @@ console.log( siteInfo);
 
  
 export async function getServerSideProps(){
- 
+  const responseHero = await client.query({
+    query: GET_HERO,
+  });
+  const responsePortofolio = await client.query({
+    query:  GET_PORTOFOLIO,
+  });
+  const responseAbout = await client.query({
+    query: GET_ABOUT,
+  });
+
+  const  about = responseAbout?.data?.pageBy 
+  const hero = responseHero?.data?.heroSections?.nodes
+  const portofolio = responsePortofolio?.data?.portofolios?.nodes
+
+  const data = {
+    about,
+    hero,
+    portofolio
+  }
   return {
-    props: { }
+    props: {
+      data
+     }
   }
 }
