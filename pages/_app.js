@@ -4,10 +4,8 @@ import '../styles/custom.css'
 import '../styles/loading.css'
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 import 'aos/dist/aos.css';
-import { ApolloProvider, gql } from '@apollo/client'
+import { ApolloProvider} from '@apollo/client'
 import { client } from '../lib/apollo'
-import { GET_MENUS } from '../source/get-menu'
-import { GET_TITLE } from '../source/get-title';
 import Head from 'next/head';
 import BlogLaoyout from '../components/blog-layout';
 import { useRouter } from 'next/router';

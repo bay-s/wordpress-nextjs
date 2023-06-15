@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 export const AboutCard = ({about}) => {
-   const titles = about.title.split("")
+   const titles = about?.title.split("")
     return(
 <div className='is-flex flex-column gap-2 my-6' id='about'>
   <h3 className='is-title title is-1 has-text-primary text-center'>
