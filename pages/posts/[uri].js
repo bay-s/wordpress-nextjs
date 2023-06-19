@@ -85,8 +85,8 @@ export default function SlugPage({ post,postPreview}) {
 </Head>
 
 
-<nav class="breadcrumb" aria-label="breadcrumbs">
-  <ul>
+<nav class="breadcrumb " aria-label="breadcrumbs">
+  <ul >
     <li><a href="/" className='txt-white is-title'>Home</a></li>
     <li><Link href='/blog'><a className='txt-white is-title'>Blog</a></Link></li>
     <li class="is-active"><a href="#" className='has-text-grey-light is-title' aria-current="page">{post.title}</a></li>
@@ -135,7 +135,7 @@ export default function SlugPage({ post,postPreview}) {
 </figure>
 </div>
 
-          <article className='lh-base' dangerouslySetInnerHTML={{__html: post.content}}>   
+ <article className='lh-base single-post-content' dangerouslySetInnerHTML={{__html: post.content}}>   
           </article>
  </section>
 

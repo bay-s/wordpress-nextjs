@@ -4,7 +4,7 @@ import formatDate from "../lib/timestamp";
 
 
 export default function PostCard ({ post ,type}){
- 
+ const theExcerpt = post.excerpt.split("<div>")
     return (
 <Link href={`/posts${post.uri}`}>
 
@@ -55,8 +55,8 @@ export default function PostCard ({ post ,type}){
     {/* END TAGS */}
   </div>
  
-  <article className='lh-base' dangerouslySetInnerHTML={{__html:post.excerpt}}>   
-   </article>
+  <article className='lh-base post-content' dangerouslySetInnerHTML={{__html:theExcerpt[0]}}>   
+  </article>
    
  
     </div>

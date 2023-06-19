@@ -344,6 +344,10 @@ gap: 30px;
     border: 1px solid #1bcaff !important;
 }
 
+.post-card .post-content{
+  word-wrap: break-word !important;
+}
+
 .post-card:hover a{
   color: white !important;
   transition: 500ms;
@@ -420,6 +424,9 @@ border-radius: 7px;
 padding: 20px;
 }
 
+#single-post .single-post-content{
+  word-wrap: break-word !important;
+}
 
 #single-post strong{
   color: white;
@@ -556,11 +563,119 @@ START RESPONSIVE
 height: 75vh;
     }
 
-    .banner-hero .banner-hero-body{
-padding: 50px;
+    .custom-btn{
+      padding: 10px 55px;
     }
+    
+ .banner-hero .banner-hero-body{
+padding-left: 50px;
+padding-right: 50px;
+ }
 
+  .banner-hero .banner-title{
+    font-size: 70px;
+  }
+
+  #main-container{
+    margin-top: 1px !important;
+  }
+}
+
+
+@media screen and (max-width:703px){
+ 
+  .banner-hero .banner-title{
+    font-size: 60px;
+  }
+
+ 
+}
+
+ 
+@media screen and (max-width:601px){
+ 
   .banner-hero .banner-title{
     font-size: 50px;
   }
+    
+  .custom-btn{
+    padding: 10px 55px;
+  }
+
+  
+.banner-text{
+  font-size: 20px ;
+}
+
+.banner-hero .banner-hero-body{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+  
+
+}
+
+
+@media screen and (max-width:440px){
+ 
+  #containers{
+    padding: 0 7px !important;
+  }
+
+  .breadcrumb  ul{
+    display: flex;
+    flex-direction: column;
+  }
+  /* POST CARD */
+  #single-post h1{
+    font-size: 20px;
+  }
+
+  .single-post-content{
+    font-size: 14px;
+  }
+  .post-card .is-title h3{
+    font-size: 17px;
+  }
+
+  .post-card .post-content p{
+    font-size: 12px  ;
+  }
+  /* BANNER */
+  .banner-hero .banner-title{
+    font-size: 40px;
+  }
+    
+  .custom-btn{
+    padding: 7px 45px;
+  }
+
+  
+.banner-text{
+  font-size: 18px ;
+}
+
+}
+
+
+
+@media screen and (max-width:375px){
+ 
+  .banner-hero .banner-title{
+    font-size: 30px;
+  }
+    
+ 
+  
+.banner-text{
+  font-size: 18px ;
+  padding: 0;
+  margin: 0;
+}
+
+.banner-text p{
+  padding: 0;
+  margin: 0;
+  font-size: 14px ;
+}
 }
