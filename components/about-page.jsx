@@ -94,7 +94,7 @@ export const AboutPage = ({skills}) => {
         <span className="has-text-primary is-title title is-2">SKILLS</span>
     </li>
 </ul>
-<div className="columns is-multiline">
+<div className="columns is-multiline w-100">
  {
   skills.map(skill => {
  
@@ -106,10 +106,7 @@ export const AboutPage = ({skills}) => {
     <img   src={skill?.featuredImage?.node?.sourceUrl} />
     )}
           </figure>
-          <div className="is-flex flex-column gap-1 w-100">
-          <h1 className="txt-white is-title">{skill?.title}</h1>
-          <progress class="progress is-primary" value="15" max="100">15%</progress>
-          </div>
+          <h1 className="txt-white is-title is-size-4 is-bold">{skill?.title}</h1>
         </div>
         </div>
         )
