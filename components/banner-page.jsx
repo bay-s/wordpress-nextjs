@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { AuthContext } from "../lib/state-context"
+import Link from "next/link"
  
 
 export const BannerPage = ({hero}) => {
@@ -27,7 +28,7 @@ export const BannerPage = ({hero}) => {
         const letters = title.split('');
  
         return (
-    <div key={`txt-container-${index}`} className="is-flex  "  >
+    <div key={`txt-container-${index}`} className="is-flex "  >
       {letters.map((letter, letterIndex) => (
         <h1 key={`${title}-${letterIndex}`}  className="is-bold hvr-wobble-vertical text-wrap">
           {
@@ -44,7 +45,9 @@ export const BannerPage = ({hero}) => {
 
   <article className='is-title  banner-text has-text-grey-light' dangerouslySetInnerHTML={{__html: heros?.content}}   >   
  </article>
-  <button className="custom-btn hvr-sweep-to-right">Contact</button>
+ <Link href='/pages/contact'>
+ <button className="custom-btn hvr-sweep-to-right">Contact</button>
+ </Link>
 </div> 
         )
       })

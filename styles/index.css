@@ -226,11 +226,24 @@ body {
     color: white !important;
 }
 
+
 .header .navbar a:hover{
   background-color: rgba(255, 255, 255, 0.096) !important;
   transition: 100ms;
 }
 
+.navbar-dropdown{
+  background-color: #151526 !important;
+}
+
+.navbar-link {
+  /* Add your custom styles here to prevent color change */
+  /* For example, you can set the color to the same color as the initial state */
+ background-color: inherit !important;
+}
+
+/* 
+ 
  
 .header .has-dropdown:hover .navbar-dropdown a{
 color: black !important;
@@ -239,11 +252,9 @@ color: black !important;
 .header .navbar-dropdown:hover > .navbar-link{
   background-color: red !important;
   color: red !important;
-}
+} */
 
-.navbar-menu.is-active{
-  background-color: #151526 !important;
-}
+
 /* end header */
 
 
@@ -543,10 +554,37 @@ START RESPONSIVE
   flex: 1 !important;
  }
 
+ 
 @media screen and (max-width: 1023px){
   #main-container #containers{
    padding: 0 20px;
   }
+
+  .navbar-menu.is-active{
+    background-color: #151526 !important;
+  }
+
+  .navbar-dropdown {
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
+  }
+ 
+  .open {
+    max-height: 500px; /* Adjust the value to the maximum height of your dropdown content */
+    opacity: 1;
+    visibility: visible;
+    transition: max-height 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
+  }
+  
+  .opens:not(.is-arrowless)::after{
+    transform: rotate(135deg) !important;
+    transition: 250ms !important;
+  }
+
+ 
 }
 
 @media screen and (max-width: 1000px){
